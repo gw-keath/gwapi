@@ -164,6 +164,57 @@ paths:
                     example: Successfully logged out
         '401':
           description: Unauthorized - Invalid or expired token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+
+  /api/user:
+    get:
+      summary: Get current user
+      description: Retrieve details of the currently authenticated user, along with additional information.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Current user details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  message:
+                    type: string
+                    example: User details fetched successfully
+                  additional_info:
+                    type: object
+                    properties:
+                      last_login:
+                        type: string
+                        format: date-time
+                        example: '2023-11-05T10:00:00Z'
+                      user_role:
+                        type: string
+                        example: admin
+                      status:
+                        type: string
+                        example: active
+        '401':
+          description: Unauthorized - Invalid or expired token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
 
 components:
   securitySchemes:
@@ -188,7 +239,6 @@ components:
         updated_at:
           type: string
           format: date-time
-
     NewUser:
       type: object
       properties:
@@ -202,7 +252,6 @@ components:
         - name
         - email
         - password
-
     NewUserWithConfirmation:
       type: object
       properties:
@@ -219,7 +268,6 @@ components:
         - email
         - password
         - password_confirmation
-
     UpdateUser:
       type: object
       properties:
@@ -229,7 +277,6 @@ components:
           type: string
         password:
           type: string
-
     LoginUser:
       type: object
       properties:

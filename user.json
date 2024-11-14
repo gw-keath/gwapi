@@ -167,7 +167,47 @@
           "path": ["api", "logout"]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "Success",
+          "status": 200,
+          "body": "{\n  \"message\": \"Successfully logged out\"\n}"
+        },
+        {
+          "name": "Unauthorized",
+          "status": 401,
+          "body": "{\n  \"message\": \"Unauthorized\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get current user",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/user",
+          "host": ["{{base_url}}"],
+          "path": ["api", "user"]
+        }
+      },
+      "response": [
+        {
+          "name": "Success",
+          "status": 200,
+          "body": "{\n  \"user\": { \"id\": 1, \"name\": \"John Doe\", \"email\": \"johndoe@example.com\" },\n  \"message\": \"User details fetched successfully\"\n}"
+        },
+        {
+          "name": "Unauthorized",
+          "status": 401,
+          "body": "{\n  \"message\": \"Unauthorized\"\n}"
+        }
+      ]
     }
   ],
   "variable": [
