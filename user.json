@@ -1,211 +1,486 @@
 {
   "info": {
-    "name": "User API",
-    "_postman_id": "your-unique-id",
-    "description": "API documentation for managing users in the system.",
+    "name": "GW系統 API",
+    "description": "物流系統的 API 文檔。",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Get all users",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/api/users",
-          "host": ["{{base_url}}"],
-          "path": ["api", "users"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get a user by ID",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/api/users/:id",
-          "host": ["{{base_url}}"],
-          "path": ["api", "users", ":id"],
-          "variable": [
-            {
-              "key": "id",
-              "value": "1"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Create a new user",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"password\": \"password123\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/api/users",
-          "host": ["{{base_url}}"],
-          "path": ["api", "users"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Update an existing user",
-      "request": {
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"janedoe@example.com\",\n  \"password\": \"newpassword123\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/api/users/:id",
-          "host": ["{{base_url}}"],
-          "path": ["api", "users", ":id"],
-          "variable": [
-            {
-              "key": "id",
-              "value": "1"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Delete a user by ID",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/api/users/:id",
-          "host": ["{{base_url}}"],
-          "path": ["api", "users", ":id"],
-          "variable": [
-            {
-              "key": "id",
-              "value": "1"
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Register a new user",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/api/register",
-          "host": ["{{base_url}}"],
-          "path": ["api", "register"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "User login",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"email\": \"johndoe@example.com\",\n  \"password\": \"password123\"\n}"
-        },
-        "url": {
-          "raw": "{{base_url}}/api/login",
-          "host": ["{{base_url}}"],
-          "path": ["api", "login"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "User logout",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/api/logout",
-          "host": ["{{base_url}}"],
-          "path": ["api", "logout"]
-        }
-      },
-      "response": [
+      "name": "Users",
+      "item": [
         {
-          "name": "Success",
-          "status": 200,
-          "body": "{\n  \"message\": \"Successfully logged out\"\n}"
+          "name": "Get all users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取所有使用者",
+              "status": 200,
+              "description": "成功獲取所有使用者",
+              "body": "[{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"},...]"
+            }
+          ]
         },
         {
-          "name": "Unauthorized",
-          "status": 401,
-          "body": "{\n  \"message\": \"Unauthorized\"\n}"
+          "name": "Get a user by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/users/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取單個使用者",
+              "status": 200,
+              "description": "成功獲取單個使用者",
+              "body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
+            },
+            {
+              "name": "使用者不存在",
+              "status": 404,
+              "description": "使用者不存在",
+              "body": "{\"message\": \"User not found\"}"
+            }
+          ]
+        },
+        {
+          "name": "Create a new user",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"John\",\"email\":\"john@example.com\",\"password\":\"password123\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功創建新使用者",
+              "status": 201,
+              "description": "成功創建新使用者",
+              "body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
+            },
+            {
+              "name": "Email 已存在",
+              "status": 409,
+              "description": "Email 已存在，無法創建新用戶",
+              "body": "{\"message\":\"User with this email already exists\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"],\"email\":[\"The email field is required.\"],\"password\":[\"The password field is required.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Update an existing user",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"John Updated\",\"email\":\"john.updated@example.com\",\"password\":\"newpassword123\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功更新使用者",
+              "status": 200,
+              "description": "成功更新使用者",
+              "body": "{\"id\":1,\"name\":\"John Updated\",\"email\":\"john.updated@example.com\"}"
+            },
+            {
+              "name": "使用者不存在",
+              "status": 404,
+              "description": "使用者不存在",
+              "body": "{\"message\": \"User not found\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"email\":[\"The email must be a valid email address.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Delete a user by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/users/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "users", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功刪除使用者",
+              "status": 200,
+              "description": "成功刪除使用者",
+              "body": "{\"message\": \"User deleted successfully\"}"
+            },
+            {
+              "name": "使用者不存在",
+              "status": 404,
+              "description": "使用者不存在",
+              "body": "{\"message\": \"User not found\"}"
+            }
+          ]
         }
       ]
     },
     {
-      "name": "Get current user",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{access_token}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/api/user",
-          "host": ["{{base_url}}"],
-          "path": ["api", "user"]
-        }
-      },
-      "response": [
+      "name": "Authentication",
+      "item": [
         {
-          "name": "Success",
-          "status": 200,
-          "body": "{\n  \"user\": { \"id\": 1, \"name\": \"John Doe\", \"email\": \"johndoe@example.com\" },\n  \"message\": \"User details fetched successfully\"\n}"
+          "name": "Register a new user",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"John\",\"email\":\"john@example.com\",\"password\":\"password123\",\"password_confirmation\":\"password123\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "register"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功註冊用戶",
+              "status": 201,
+              "description": "成功註冊用戶",
+              "body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"password_confirmation\":[\"The password confirmation does not match.\"]}}"
+            }
+          ]
         },
         {
-          "name": "Unauthorized",
-          "status": 401,
-          "body": "{\n  \"message\": \"Unauthorized\"\n}"
+          "name": "User login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"john@example.com\",\"password\":\"password123\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "login"]
+            }
+          },
+          "response": [
+            {
+              "name": "登入成功",
+              "status": 200,
+              "description": "登入成功",
+              "body": "{\"access_token\":\"token\",\"token_type\":\"Bearer\"}"
+            },
+            {
+              "name": "登入失敗",
+              "status": 401,
+              "description": "登入失敗，憑證無效",
+              "body": "{\"message\": \"Invalid login credentials\"}"
+            }
+          ]
+        },
+        {
+          "name": "User logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/logout",
+              "host": ["{{base_url}}"],
+              "path": ["api", "logout"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功登出",
+              "status": 200,
+              "description": "成功登出",
+              "body": "{\"message\": \"Successfully logged out\"}"
+            },
+            {
+              "name": "未授權",
+              "status": 401,
+              "description": "未授權，無效的 Token",
+              "body": "{\"message\": \"Unauthorized\"}"
+            }
+          ]
+        },
+        {
+          "name": "Get current user",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/user",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取當前用戶資料",
+              "status": 200,
+              "description": "成功獲取當前用戶資料",
+              "body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
+            },
+            {
+              "name": "未授權",
+              "status": 401,
+              "description": "未授權",
+              "body": "{\"message\": \"Unauthorized\"}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Trucks",
+      "item": [
+        {
+          "name": "Get all trucks",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/trucks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "trucks"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取所有卡車",
+              "status": 200,
+              "description": "成功獲取所有卡車",
+              "body": "[{\"id\":1,\"type\":\"Box Truck\",\"capacity_kg\":5000,...}]"
+            }
+          ]
+        },
+        {
+          "name": "Get a truck by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/trucks/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "trucks", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取單一卡車",
+              "status": 200,
+              "description": "成功獲取單一卡車",
+              "body": "{\"id\":1,\"type\":\"Box Truck\",\"capacity_kg\":5000,...}"
+            },
+            {
+              "name": "卡車不存在",
+              "status": 404,
+              "description": "卡車不存在",
+              "body": "{\"message\": \"Truck not found\"}"
+            }
+          ]
+        },
+        {
+          "name": "Create a new truck",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"type\":\"Box Truck\",\"capacity_kg\":5000,\"volume_cbm\":15.5,\"length\":6.2,\"width\":2.5,\"height\":2.7,\"has_tailgate\":true,\"tailgate_capacity_kg\":1000,\"status\":\"available\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trucks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "trucks"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功創建新卡車",
+              "status": 201,
+              "description": "成功創建新卡車",
+              "body": "{\"id\":1,\"type\":\"Box Truck\",\"capacity_kg\":5000,...}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"type\":[\"The type field is required.\"],...}}"
+            }
+          ]
+        },
+        {
+          "name": "Update an existing truck",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\":\"under_maintenance\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trucks/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "trucks", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功更新卡車",
+              "status": 200,
+              "description": "成功更新卡車",
+              "body": "{\"id\":1,\"status\":\"under_maintenance\"}"
+            },
+            {
+              "name": "卡車不存在",
+              "status": 404,
+              "description": "卡車不存在",
+              "body": "{\"message\": \"Truck not found\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"status\":[\"The selected status is invalid.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Delete a truck by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/trucks/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "trucks", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功刪除卡車",
+              "status": 200,
+              "description": "成功刪除卡車",
+              "body": "{\"message\": \"Truck deleted successfully\"}"
+            },
+            {
+              "name": "卡車不存在",
+              "status": 404,
+              "description": "卡車不存在",
+              "body": "{\"message\": \"Truck not found\"}"
+            }
+          ]
         }
       ]
     }
