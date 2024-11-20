@@ -483,7 +483,378 @@
           ]
         }
       ]
-    }
+    },
+    {
+      "name": "Truck Prices",
+      "item": [
+        {
+          "name": "Get all prices",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/truck-prices",
+              "host": ["{{base_url}}"],
+              "path": ["api", "truck-prices"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取所有價格",
+              "status": 200,
+              "description": "成功獲取所有價格",
+              "body": "[{\"id\":1,\"truck_id\":1,\"port_name\":\"基隆港\",\"postal_code\":\"100\",\"price\":1500.50,...}]"
+            }
+          ]
+        },
+        {
+          "name": "Get a price by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/truck-prices/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "truck-prices", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取單個價格",
+              "status": 200,
+              "description": "成功獲取單個價格",
+              "body": "{\"id\":1,\"truck_id\":1,\"port_name\":\"基隆港\",\"postal_code\":\"100\",\"price\":1500.50,...}"
+            },
+            {
+              "name": "價格記錄不存在",
+              "status": 404,
+              "description": "價格記錄不存在",
+              "body": "{\"message\": \"Price record not found\"}"
+            }
+          ]
+        },
+        {
+          "name": "Create a new price record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"truck_id\":1,\"port_name\":\"基隆港\",\"postal_code\":\"100\",\"price\":1500.50}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/truck-prices",
+              "host": ["{{base_url}}"],
+              "path": ["api", "truck-prices"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功創建價格記錄",
+              "status": 201,
+              "description": "成功創建價格記錄",
+              "body": "{\"id\":1,\"truck_id\":1,\"port_name\":\"基隆港\",\"postal_code\":\"100\",\"price\":1500.50}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"price\":[\"The price field is required.\"],...}}"
+            }
+          ]
+        },
+        {
+          "name": "Update an existing price record",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"price\":2000}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/truck-prices/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "truck-prices", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功更新價格記錄",
+              "status": 200,
+              "description": "成功更新價格記錄",
+              "body": "{\"id\":1,\"price\":2000}"
+            },
+            {
+              "name": "價格記錄不存在",
+              "status": 404,
+              "description": "價格記錄不存在",
+              "body": "{\"message\": \"Price record not found\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"price\":[\"The price must be a valid number.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Delete a price record by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/truck-prices/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "truck-prices", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功刪除價格記錄",
+              "status": 200,
+              "description": "成功刪除價格記錄",
+              "body": "{\"message\": \"Price record deleted successfully\"}"
+            },
+            {
+              "name": "價格記錄不存在",
+              "status": 404,
+              "description": "價格記錄不存在",
+              "body": "{\"message\": \"Price record not found\"}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "HBLs",
+      "item": [
+        {
+          "name": "Get all HBLs",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/hbls",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbls"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取所有 HBLs",
+              "status": 200,
+              "description": "成功獲取所有 HBLs",
+              "body": "[{\"id\":1,\"mbl\":\"210410374855\",\"hbl\":\"TIIU4446660\",\"terminal\":\"環球\"},...]"
+            }
+          ]
+        },
+        {
+          "name": "Get an HBL by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/hbls/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbls", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取單一 HBL",
+              "status": 200,
+              "description": "成功獲取單一 HBL",
+              "body": "{\"id\":1,\"mbl\":\"210410374855\",\"hbl\":\"TIIU4446660\",\"terminal\":\"環球\"}"
+            },
+            {
+              "name": "HBL 不存在",
+              "status": 404,
+              "description": "HBL 不存在",
+              "body": "{\"message\": \"HBL not found\"}"
+            }
+          ]
+        },
+        {
+          "name": "Create a new HBL",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"mbl\":\"210410374855\",\"hbl\":\"TIIU4446660\",\"terminal\":\"環球\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/hbls",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbls"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功創建新 HBL",
+              "status": 201,
+              "description": "成功創建新 HBL",
+              "body": "{\"id\":1,\"mbl\":\"210410374855\",\"hbl\":\"TIIU4446660\",\"terminal\":\"環球\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"mbl\":[\"The mbl field is required.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Create multiple HBLs (Batch creation)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"data\":\"210410374855 TIIU4446660 環球\\n210410374855-1 SZKEE24052984 環球\\n210410374855-2 SZKEE24056301 環球\\n210410374855-3 SZKEE24056374 環球\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/hbls/batch",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbls", "batch"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功創建多筆 HBLs",
+              "status": 201,
+              "description": "成功創建多筆 HBLs",
+              "body": "[{\"id\":1,\"mbl\":\"210410374855\",\"hbl\":\"TIIU4446660\",\"terminal\":\"環球\"},...]"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"data\":[\"The data field is required.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Update an existing HBL",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"mbl\":\"210410374855\",\"hbl\":\"TIIU4446660\",\"terminal\":\"新櫃場\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/hbls/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbls", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功更新 HBL",
+              "status": 200,
+              "description": "成功更新 HBL",
+              "body": "{\"id\":1,\"mbl\":\"210410374855\",\"hbl\":\"TIIU4446660\",\"terminal\":\"新櫃場\"}"
+            },
+            {
+              "name": "HBL 不存在",
+              "status": 404,
+              "description": "HBL 不存在",
+              "body": "{\"message\": \"HBL not found\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"terminal\":[\"The terminal field is required.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Delete an HBL by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/hbls/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbls", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功刪除 HBL",
+              "status": 200,
+              "description": "成功刪除 HBL",
+              "body": "{\"message\": \"HBL deleted successfully\"}"
+            },
+            {
+              "name": "HBL 不存在",
+              "status": 404,
+              "description": "HBL 不存在",
+              "body": "{\"message\": \"HBL not found\"}"
+            }
+          ]
+        }
+      ]
+    }        
   ],
   "variable": [
     {
