@@ -620,6 +620,37 @@
           ]
         },
         {
+          "name": "Get truck prices by truck_id",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/truck-prices/truck/:truck_id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "truck-prices", "truck", ":truck_id"],
+              "variable": [
+                {
+                  "key": "truck_id",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取該卡車的價格記錄",
+              "status": 200,
+              "description": "成功獲取該卡車的所有價格記錄，資料會按港口分組並包含價格細節。",
+              "body": "truck_id: 2, port: 基隆港 (105: 1500.00, 200: 123.00), 台中港 (104: 200.00, 104: 300.00)"
+            },
+            {
+              "name": "找不到該卡車的價格記錄",
+              "status": 404,
+              "description": "找不到與該 truck_id 相關的價格記錄。",
+              "body": "{\"message\": \"No prices found for the given truck\"}"
+            }
+          ]
+        },
+        {
           "name": "Delete a price record by ID",
           "request": {
             "method": "DELETE",
