@@ -854,7 +854,163 @@
           ]
         }
       ]
-    }        
+    },
+    {
+      "name": "HBL Settlements",
+      "item": [
+        {
+          "name": "Get all HBL Settlements",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/hbl-settlements",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbl-settlements"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取所有 HBL Settlements",
+              "status": 200,
+              "description": "成功獲取所有 HBL Settlements",
+              "body": "[{\"id\":1,\"hbl\":\"210410374855\",\"settled_at\":\"2023-11-20 10:00:00\"},...]"
+            }
+          ]
+        },
+        {
+          "name": "Get an HBL Settlement by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/hbl-settlements/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbl-settlements", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取單一 HBL Settlement",
+              "status": 200,
+              "description": "成功獲取單一 HBL Settlement",
+              "body": "{\"id\":1,\"hbl\":\"210410374855\",\"settled_at\":\"2023-11-20 10:00:00\"}"
+            },
+            {
+              "name": "HBL Settlement 不存在",
+              "status": 404,
+              "description": "HBL Settlement 不存在",
+              "body": "{\"message\": \"HBL Settlement not found\"}"
+            }
+          ]
+        },
+        {
+          "name": "Create a new HBL Settlement",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"hbl\":\"TIIU4446660\",\"settled_at\":\"2023-11-20 10:00:00\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/hbl-settlements",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbl-settlements"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功創建新 HBL Settlement",
+              "status": 201,
+              "description": "成功創建新 HBL Settlement",
+              "body": "{\"id\":1,\"mbl\":\"210410374855\",\"settled_at\":\"2023-11-20 10:00:00\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"mbl\":[\"The mbl field is required.\"],\"settled_at\":[\"The settled_at field is required.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Create multiple HBL Settlements (Batch creation)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"data\":\"TIIU4446660 2023-11-20 10:00:00\\nSZKEE24052984 2023-11-20 11:00:00\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/hbl-settlements/batch",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbl-settlements", "batch"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功創建多筆 HBL Settlements",
+              "status": 201,
+              "description": "成功創建多筆 HBL Settlements",
+              "body": "[{\"id\":1,\"hbl\":\"TIIU4446660\",\"settled_at\":\"2023-11-20 10:00:00\"},...]"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"data\":[\"The data field is required.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Delete an HBL Settlement by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/hbl-settlements/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbl-settlements", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功刪除 HBL Settlement",
+              "status": 200,
+              "description": "成功刪除 HBL Settlement",
+              "body": "{\"message\": \"HBL Settlement deleted successfully\"}"
+            },
+            {
+              "name": "HBL Settlement 不存在",
+              "status": 404,
+              "description": "HBL Settlement 不存在",
+              "body": "{\"message\": \"HBL Settlement not found\"}"
+            }
+          ]
+        }
+      ]
+    }            
   ],
   "variable": [
     {
