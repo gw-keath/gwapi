@@ -571,10 +571,10 @@
               "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"price\":[\"The price field is required.\"],...}}"
             },
             {
-              "name": "已有重覆資料",
-              "status": 409,
-              "description": "truck_id, port_name, postal_code 已存在相同記錄",
-              "body": "{\"message\": \"A record with the same truck_id, port_name, and postal_code already exists.\", \"existing_record\": {\"id\":1,\"truck_id\":1,\"port_name\":\"基隆港\",\"postal_code\":\"100\",\"price\":1500.50}}"
+              "name": "成功更新價格記錄",
+              "status": 200,
+              "description": "成功更新了已存在的 truck_id, port_name, postal_code 的記錄",
+              "body": "{\"message\": \"Existing record updated successfully.\", \"record\": {\"id\":1,\"truck_id\":1,\"port_name\":\"基隆港\",\"postal_code\":\"100\",\"price\":2000.00}}"
             }
           ]
         },
