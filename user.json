@@ -416,7 +416,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"status\":\"under_maintenance\"}"
+              "raw": "{\"type\":\"Box Truck\",\"capacity_kg\":5000,\"volume_cbm\":15.5,\"length\":6.2,\"width\":2.5,\"height\":2.7,\"has_tailgate\":true,\"tailgate_capacity_kg\":1000,\"status\":\"available\"}"
             },
             "url": {
               "raw": "{{base_url}}/api/trucks/:id",
