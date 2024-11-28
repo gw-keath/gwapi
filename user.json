@@ -317,6 +317,52 @@
       ]
     },
     {
+      "name": "Email",
+      "item": [
+        {
+          "name": "Send Test Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"to\":\"recipient@example.com\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/email/send",
+              "host": ["{{base_url}}"],
+              "path": ["api", "email", "send"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功發送測試郵件",
+              "status": 200,
+              "description": "成功發送測試郵件",
+              "body": "{\"message\":\"Email sent successfully!\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "輸入的數據驗證失敗，通常是電子郵件格式不正確",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"to\":[\"The to field is required.\"]}}"
+            },
+            {
+              "name": "發送失敗",
+              "status": 500,
+              "description": "伺服器內部錯誤導致郵件未成功發送",
+              "body": "{\"error\":\"Failed to send email.\",\"details\":\"SMTP connection failed.\"}"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Trucks",
       "item": [
         {
@@ -549,7 +595,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"truck_id\":1,\"port_name\":\"基隆港\",\"postal_code\":\"100\",\"price\":1500.50}"
+              "raw": "{\"truck_id\":1,\"port_name\":\"基隆港\",\"postal_codes\":[\"100\",\"200\",\"300\"],\"price\":1500.50}"
             },
             "url": {
               "raw": "{{base_url}}/api/truck-prices",
