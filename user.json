@@ -206,13 +206,13 @@
             {
               "name": "成功註冊用戶",
               "status": 201,
-              "description": "成功註冊用戶",
-              "body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
+              "description": "用戶註冊成功並發送驗證信。",
+              "body": "{\"message\":\"Registration successful. Please check your email to verify your account.\"}"
             },
             {
-              "name": "請求驗證失敗",
+              "name": "驗證失敗",
               "status": 422,
-              "description": "請求驗證失敗",
+              "description": "註冊時的資料驗證失敗。",
               "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"password_confirmation\":[\"The password confirmation does not match.\"]}}"
             }
           ]
@@ -241,15 +241,15 @@
             {
               "name": "登入成功",
               "status": 200,
-              "description": "登入成功",
-              "body": "{\"access_token\":\"token\",\"token_type\":\"Bearer\"}"
+              "description": "用戶成功登入。",
+              "body": "{\"user\":{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"},\"access_token\":\"token\",\"token_type\":\"Bearer\"}"
             },
             {
               "name": "登入失敗",
               "status": 401,
-              "description": "登入失敗，憑證無效",
+              "description": "登入失敗，憑證無效。",
               "body": "{\"message\": \"Invalid login credentials\"}"
-            }
+            }            
           ]
         },
         {
@@ -272,13 +272,13 @@
             {
               "name": "成功登出",
               "status": 200,
-              "description": "成功登出",
+              "description": "用戶成功登出。",
               "body": "{\"message\": \"Successfully logged out\"}"
             },
             {
               "name": "未授權",
               "status": 401,
-              "description": "未授權，無效的 Token",
+              "description": "無效的 Token 或未認證。",
               "body": "{\"message\": \"Unauthorized\"}"
             }
           ]
@@ -301,15 +301,89 @@
           },
           "response": [
             {
-              "name": "成功獲取當前用戶資料",
+              "name": "成功獲取用戶資料",
               "status": 200,
-              "description": "成功獲取當前用戶資料",
+              "description": "成功獲取當前用戶的資料。",
               "body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
             },
             {
               "name": "未授權",
               "status": 401,
-              "description": "未授權",
+              "description": "用戶未經認證。",
+              "body": "{\"message\": \"Unauthorized\"}"
+            }
+          ]
+        },
+        {
+          "name": "Verify email address",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/auth/email/verify/1/abcdef123456",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "email", "verify", "1", "abcdef123456"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功驗證電子郵件",
+              "status": 200,
+              "description": "電子郵件驗證成功。",
+              "body": "{\"message\": \"Email verification successful.\"}"
+            },
+            {
+              "name": "用戶不存在",
+              "status": 404,
+              "description": "無法找到對應的用戶。",
+              "body": "{\"message\": \"User not found.\"}"
+            },
+            {
+              "name": "驗證連結無效",
+              "status": 403,
+              "description": "驗證連結無效。",
+              "body": "{\"message\": \"Invalid verification link.\"}"
+            },
+            {
+              "name": "驗證連結已過期",
+              "status": 403,
+              "description": "驗證連結無效或已過期。",
+              "body": "{\"message\": \"Invalid or expired verification link.\"}"
+            },
+            {
+              "name": "電子郵件已驗證",
+              "status": 200,
+              "description": "電子郵件已經被驗證過。",
+              "body": "{\"message\": \"Email is already verified.\"}"
+            }
+          ]
+        },
+        {
+          "name": "Resend verification email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/email/resend",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "email", "resend"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功重新發送驗證郵件",
+              "status": 200,
+              "description": "驗證郵件重新發送成功。",
+              "body": "{\"message\": \"Verification email resent successfully.\"}"
+            },
+            {
+              "name": "未授權",
+              "status": 401,
+              "description": "用戶未經認證。",
               "body": "{\"message\": \"Unauthorized\"}"
             }
           ]
