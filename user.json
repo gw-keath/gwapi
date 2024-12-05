@@ -381,6 +381,12 @@
               "body": "{\"message\": \"Verification email resent successfully.\"}"
             },
             {
+                "name": "電子郵件已驗證",
+                "status": 200,
+                "description": "用戶的電子郵件已經被驗證，無需重新發送驗證郵件。",
+                "body": "{\"message\": \"Email is already verified.\"}"
+            },
+            {
               "name": "未授權",
               "status": 401,
               "description": "用戶未經認證。",
@@ -863,6 +869,37 @@
           ]
         },
         {
+          "name": "Get an HBL by HBL Number",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/hbls/hbl/:hbl",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbls", "hbl", ":hbl"],
+              "variable": [
+                {
+                  "key": "hbl",
+                  "value": "SZKEE24087124"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取單一 HBL",
+              "status": 200,
+              "description": "成功獲取單一 HBL，並關聯顯示相關資料",
+              "body": "{\"id\":2,\"mbl\":\"210410374856\",\"hbl\":\"SZKEE24087124\",\"terminal\":\"中華\",\"settled_at\":\"2023-11-25 14:00:00\",\"pickup_at\":\"2024-12-04 09:00:00\"}"
+            },
+            {
+              "name": "HBL 不存在",
+              "status": 404,
+              "description": "HBL 不存在",
+              "body": "{\"message\": \"HBL not found\"}"
+            }
+          ]
+        },        
+        {
           "name": "Create a new HBL",
           "request": {
             "method": "POST",
@@ -1167,12 +1204,179 @@
           ]
         }
       ]
-    }            
+    },{
+      "name": "HBL Terminals",
+      "item": [
+        {
+          "name": "Get all HBL Terminals",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/hbl-terminals",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbl-terminals"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取所有 HBL Terminals",
+              "status": 200,
+              "description": "成功獲取所有 HBLTerminals",
+              "body": "[{\"id\":1,\"mbl\":\"210410512738\",\"terminal\":\"ctdc\",\"pickup_at\":\"2024-12-03 08:21:00\"},...]"
+            }
+          ]
+        },
+        {
+          "name": "Get an HBL Terminal by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/hbl-terminals/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbl-terminals", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取單一 HBL Terminal",
+              "status": 200,
+              "description": "成功獲取單一 HBL Terminal",
+              "body": "{\"id\":1,\"mbl\":\"210410512738\",\"terminal\":\"ctdc\",\"pickup_at\":\"2024-12-03 08:21:00\"}"
+            },
+            {
+              "name": "HBL Terminal 不存在",
+              "status": 404,
+              "description": "HBLTerminal 不存在",
+              "body": "{\"message\": \"HBL Terminal not found\"}"
+            }
+          ]
+        },
+        {
+          "name": "Create a new HBL Terminal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"mbl\":\"210410512738\",\"terminal\":\"ctdc\",\"pickup_at\":\"2024-12-03 08:21:00\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/hbl-terminals",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbl-terminals"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功創建新 HBL Terminal",
+              "status": 201,
+              "description": "成功創建新 HBL Terminal",
+              "body": "{\"id\":1,\"mbl\":\"210410512738\",\"terminal\":\"ctdc\",\"pickup_at\":\"2024-12-03 08:21:00\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"mbl\":[\"The mbl field is required.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Update an existing HBL Terminal",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"mbl\":\"210410512738\",\"terminal\":\"uctc\",\"pickup_at\":\"2024-12-03 09:00:00\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/hbl-terminals/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbl-terminals", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功更新 HBL Terminal",
+              "status": 200,
+              "description": "成功更新 HBL Terminal",
+              "body": "{\"id\":1,\"mbl\":\"210410512738\",\"terminal\":\"uctc\",\"pickup_at\":\"2024-12-03 09:00:00\"}"
+            },
+            {
+              "name": "HBL Terminal 不存在",
+              "status": 404,
+              "description": "HBL Terminal 不存在",
+              "body": "{\"message\": \"HBL Terminal not found\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"pickup_at\":[\"The pickup_at field must be a valid date.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Delete an HBL Terminal by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/hbl-terminals/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "hbl-terminals", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功刪除 HBL Terminal",
+              "status": 200,
+              "description": "成功刪除 HBL Terminal",
+              "body": "{\"message\": \"HBL Terminal deleted successfully\"}"
+            },
+            {
+              "name": "HBL Terminal 不存在",
+              "status": 404,
+              "description": "HBL Terminal 不存在",
+              "body": "{\"message\": \"HBL Terminal not found\"}"
+            }
+          ]
+        }
+      ]
+    }               
   ],
   "variable": [
     {
       "key": "base_url",
-      "value": "http://localhost:8000",
+      "value": "http://192.168.5.82:8000",
       "type": "string"
     },
     {
