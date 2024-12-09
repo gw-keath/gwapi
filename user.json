@@ -1149,7 +1149,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"data\":\"TIIU4446660 2023-11-20 10:00:00\\nSZKEE24052984 2023-11-20 11:00:00\"}"
+              "raw": "{\"data\":\"TIIU4446660 24/12/03\\nSZKEE24052984 24/12/03\"}"
             },
             "url": {
               "raw": "{{base_url}}/api/hbl-settlements/batch",
@@ -1376,7 +1376,7 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "http://192.168.5.82:8000",
+      "value": "http://localhost:8000",
       "type": "string"
     },
     {
