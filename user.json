@@ -443,6 +443,138 @@
       ]
     },
     {
+      "name": "Password Management",
+      "item": [
+        {
+          "name": "Forgot password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"john@example.com\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/password/forgot",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "password", "forgot"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功發送密碼重置連結",
+              "status": 200,
+              "description": "密碼重置連結已發送到用戶的電子郵件。",
+              "body": "{\"message\":\"Password reset link sent to your email.\"}"
+            },
+            {
+              "name": "用戶不存在",
+              "status": 422,
+              "description": "請求的電子郵件不存在於系統中。",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"email\":[\"The selected email is invalid.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Reset password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"john@example.com\",\"token\":\"reset-token\",\"password\":\"newpassword123\",\"password_confirmation\":\"newpassword123\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/password/reset",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "password", "reset"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功重置密碼",
+              "status": 200,
+              "description": "用戶密碼已成功重置，可以使用新密碼登入。",
+              "body": "{\"message\":\"Password reset successful. You can now log in with your new password.\"}"
+            },
+            {
+              "name": "無效或過期的令牌",
+              "status": 400,
+              "description": "提供的重置令牌無效或已過期。",
+              "body": "{\"message\":\"Invalid or expired token.\"}"
+            },
+            {
+              "name": "驗證失敗",
+              "status": 422,
+              "description": "新密碼的資料驗證失敗，例如密碼長度不足或確認密碼不匹配。",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"password_confirmation\":[\"The password confirmation does not match.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Update password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"current_password\":\"oldpassword\",\"new_password\":\"newpassword123\",\"new_password_confirmation\":\"newpassword123\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/password/update",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "password", "update"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功更新密碼",
+              "status": 200,
+              "description": "用戶密碼更新成功。",
+              "body": "{\"message\":\"Password updated successfully.\"}"
+            },
+            {
+              "name": "當前密碼錯誤",
+              "status": 422,
+              "description": "提供的當前密碼與系統記錄的密碼不匹配。",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"current_password\":[\"The current password is incorrect.\"]}}"
+            },
+            {
+              "name": "新密碼驗證失敗",
+              "status": 422,
+              "description": "新密碼的資料驗證失敗，例如密碼長度不足或確認密碼不匹配。",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"new_password_confirmation\":[\"The new password confirmation does not match.\"]}}"
+            },
+            {
+              "name": "未授權",
+              "status": 401,
+              "description": "驗證 Token 不正確或已過期。",
+              "body": "{\"message\":\"Unauthorized\"}"
+            }
+          ]
+        }        
+      ]
+    },    
+    {
       "name": "Trucks",
       "item": [
         {
