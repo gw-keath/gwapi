@@ -944,7 +944,54 @@
               "body": "{\"message\": \"Price record not found\"}"
             }
           ]
-        }
+        },
+        {
+          "name": "Calculate Truck Prices",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/truck-prices/calculate-truck-prices",
+              "host": ["{{base_url}}"],
+              "path": ["api", "truck-prices", "calculate-truck-prices"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\"origin_port\": \"基隆港\",\"destination\": {\"postal_code\": \"200\",\"city\": \"基隆市\",\"district\": \"信義區\",\"address\": \"某某路 某巷 123號 5樓 A室\",\"has_elevator\": true},\"items\": [{\"type\": \"防水袋\", \"quantity\": 56, \"weight_per_item\": 720, \"length\": 30, \"width\": 40, \"height\": 25}]}"
+            }
+          },
+          "response": [
+            {
+              "name": "成功計算價格",
+              "status": 200,
+              "description": "成功返回符合條件的卡車和費用資訊",
+              "body": "{\"status\": \"success\",\"origin_port\": \"基隆港\",\"destination\": {\"postal_code\": \"200\",\"city\": \"基隆市\",\"district\": \"信義區\",\"address\": \"某某路 某巷 123號 5樓 A室\",\"has_elevator\": true},\"items\": [{\"type\": \"防水袋\",\"quantity\": 56,\"weight_per_item\": 720,\"length\": 30,\"width\": 40,\"height\": 25,\"cbm\": 1.68}],\"max_dimensions\": {\"length\": 30,\"width\": 40,\"height\": 25},\"totals\": {\"weight\": 40320,\"cbm\": 1.68},\"suitable_trucks\": [{\"id\": 5,\"type\": \"2噸\",\"capacity_kg\": 50000,\"volume_cbm\": \"10.00\",\"length\": \"400.00\",\"width\": \"200.00\",\"height\": \"200.00\",\"has_tailgate\": 1,\"tailgate_capacity_kg\": 1000,\"status\": \"available\"}],\"best_truck\": \"2噸\",\"final_price\": 2200.00}"
+            },
+            {
+              "name": "沒有符合的卡車",
+              "status": 404,
+              "description": "無法找到符合條件的卡車",
+              "body": "{\"status\": \"error\",\"message\": \"No suitable trucks available.\",\"reason\": \"No trucks meet the weight, volume, or dimension requirements.\"}"
+            },
+            {
+              "name": "沒有符合的費用",
+              "status": 404,
+              "description": "無法找到符合條件的費用",
+              "body": "{\"status\": \"error\",\"message\": \"No price available for the selected truck.\",\"reason\": \"No matching truck price found for the specified origin port and postal code.\"}"
+            },
+            {
+              "name": "驗證錯誤",
+              "status": 422,
+              "description": "輸入資料不完整或格式錯誤",
+              "body": "{\"status\": \"error\",\"message\": \"Validation failed.\",\"errors\": {\"origin_port\": [\"The origin port field is required.\"],\"destination.postal_code\": [\"The destination.postal_code field is required.\"]}}"
+            }
+          ]
+        }        
       ]
     },
     {
