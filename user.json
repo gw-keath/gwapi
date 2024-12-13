@@ -573,7 +573,175 @@
           ]
         }        
       ]
-    },    
+    },
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "Get all roles",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/roles",
+              "host": ["{{base_url}}"],
+              "path": ["api", "roles"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取所有角色",
+              "status": 200,
+              "description": "成功獲取所有角色",
+              "body": "[{\"id\":1,\"name\":\"admin\",\"description\":\"Administrator role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}]"
+            }
+          ]
+        },
+        {
+          "name": "Get a role by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/roles/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "roles", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取單一角色",
+              "status": 200,
+              "description": "成功獲取單一角色",
+              "body": "{\"id\":1,\"name\":\"admin\",\"description\":\"Administrator role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
+            },
+            {
+              "name": "角色不存在",
+              "status": 404,
+              "description": "角色不存在",
+              "body": "{\"message\": \"Role not found\"}"
+            }
+          ]
+        },
+        {
+          "name": "Create a new role",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"admin\",\"description\":\"Administrator role\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/roles",
+              "host": ["{{base_url}}"],
+              "path": ["api", "roles"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功創建新角色",
+              "status": 201,
+              "description": "成功創建新角色",
+              "body": "{\"id\":1,\"name\":\"admin\",\"description\":\"Administrator role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Update an existing role",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"editor\",\"description\":\"Editor role\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/roles/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "roles", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功更新角色",
+              "status": 200,
+              "description": "成功更新角色",
+              "body": "{\"id\":1,\"name\":\"editor\",\"description\":\"Editor role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T12:00:00Z\"}"
+            },
+            {
+              "name": "角色不存在",
+              "status": 404,
+              "description": "角色不存在",
+              "body": "{\"message\": \"Role not found\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Delete a role by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/roles/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "roles", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功刪除角色",
+              "status": 200,
+              "description": "成功刪除角色",
+              "body": "{\"message\": \"Role deleted successfully\"}"
+            },
+            {
+              "name": "角色不存在",
+              "status": 404,
+              "description": "角色不存在",
+              "body": "{\"message\": \"Role not found\"}"
+            }
+          ]
+        }
+      ]
+    },        
     {
       "name": "Trucks",
       "item": [
