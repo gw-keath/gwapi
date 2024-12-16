@@ -741,7 +741,175 @@
           ]
         }
       ]
-    },        
+    },
+    {
+      "name": "Permissions",
+      "item": [
+        {
+          "name": "Get all permissions",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/permissions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "permissions"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取所有權限",
+              "status": 200,
+              "description": "成功獲取所有權限",
+              "body": "[{\"id\":1,\"name\":\"create_user\",\"description\":\"Permission to create users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}]"
+            }
+          ]
+        },
+        {
+          "name": "Get a permission by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/permissions/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "permissions", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功獲取單一權限",
+              "status": 200,
+              "description": "成功獲取單一權限",
+              "body": "{\"id\":1,\"name\":\"create_user\",\"description\":\"Permission to create users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
+            },
+            {
+              "name": "權限不存在",
+              "status": 404,
+              "description": "權限不存在",
+              "body": "{\"message\": \"Permission not found\"}"
+            }
+          ]
+        },
+        {
+          "name": "Create a new permission",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"create_user\",\"description\":\"Permission to create users\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/permissions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "permissions"]
+            }
+          },
+          "response": [
+            {
+              "name": "成功創建新權限",
+              "status": 201,
+              "description": "成功創建新權限",
+              "body": "{\"id\":1,\"name\":\"create_user\",\"description\":\"Permission to create users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Update an existing permission",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"edit_user\",\"description\":\"Permission to edit users\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/permissions/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "permissions", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功更新權限",
+              "status": 200,
+              "description": "成功更新權限",
+              "body": "{\"id\":1,\"name\":\"edit_user\",\"description\":\"Permission to edit users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T12:00:00Z\"}"
+            },
+            {
+              "name": "權限不存在",
+              "status": 404,
+              "description": "權限不存在",
+              "body": "{\"message\": \"Permission not found\"}"
+            },
+            {
+              "name": "請求驗證失敗",
+              "status": 422,
+              "description": "請求驗證失敗",
+              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+            }
+          ]
+        },
+        {
+          "name": "Delete a permission by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/permissions/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "permissions", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "成功刪除權限",
+              "status": 200,
+              "description": "成功刪除權限",
+              "body": "{\"message\": \"Permission deleted successfully\"}"
+            },
+            {
+              "name": "權限不存在",
+              "status": 404,
+              "description": "權限不存在",
+              "body": "{\"message\": \"Permission not found\"}"
+            }
+          ]
+        }
+      ]
+    },          
     {
       "name": "Trucks",
       "item": [
