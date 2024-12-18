@@ -6,910 +6,1040 @@
   },
   "item": [
     {
-      "name": "Users",
-      "item": [
-        {
-          "name": "Get all users",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "{{base_url}}/api/users",
-              "host": ["{{base_url}}"],
-              "path": ["api", "users"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功獲取所有使用者",
-              "status": 200,
-              "description": "成功獲取所有使用者",
-              "body": "[{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"},...]"
-            }
-          ]
-        },
-        {
-          "name": "Get a user by ID",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "{{base_url}}/api/users/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "users", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功獲取單個使用者",
-              "status": 200,
-              "description": "成功獲取單個使用者",
-              "body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
-            },
-            {
-              "name": "使用者不存在",
-              "status": 404,
-              "description": "使用者不存在",
-              "body": "{\"message\": \"User not found\"}"
-            }
-          ]
-        },
-        {
-          "name": "Create a new user",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"name\":\"John\",\"email\":\"john@example.com\",\"password\":\"password123\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/users",
-              "host": ["{{base_url}}"],
-              "path": ["api", "users"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功創建新使用者",
-              "status": 201,
-              "description": "成功創建新使用者",
-              "body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
-            },
-            {
-              "name": "Email 已存在",
-              "status": 409,
-              "description": "Email 已存在，無法創建新用戶",
-              "body": "{\"message\":\"User with this email already exists\"}"
-            },
-            {
-              "name": "請求驗證失敗",
-              "status": 422,
-              "description": "請求驗證失敗",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"],\"email\":[\"The email field is required.\"],\"password\":[\"The password field is required.\"]}}"
-            }
-          ]
-        },
-        {
-          "name": "Update an existing user",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"name\":\"John Updated\",\"email\":\"john.updated@example.com\",\"password\":\"newpassword123\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/users/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "users", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功更新使用者",
-              "status": 200,
-              "description": "成功更新使用者",
-              "body": "{\"id\":1,\"name\":\"John Updated\",\"email\":\"john.updated@example.com\"}"
-            },
-            {
-              "name": "使用者不存在",
-              "status": 404,
-              "description": "使用者不存在",
-              "body": "{\"message\": \"User not found\"}"
-            },
-            {
-              "name": "請求驗證失敗",
-              "status": 422,
-              "description": "請求驗證失敗",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"email\":[\"The email must be a valid email address.\"]}}"
-            }
-          ]
-        },
-        {
-          "name": "Delete a user by ID",
-          "request": {
-            "method": "DELETE",
-            "url": {
-              "raw": "{{base_url}}/api/users/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "users", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功刪除使用者",
-              "status": 200,
-              "description": "成功刪除使用者",
-              "body": "{\"message\": \"User deleted successfully\"}"
-            },
-            {
-              "name": "使用者不存在",
-              "status": 404,
-              "description": "使用者不存在",
-              "body": "{\"message\": \"User not found\"}"
-            }
-          ]
-        }
-      ]
+		"name": "Users",
+		"item": [
+			{
+			"name": "Get all users",
+			"request": {
+				"method": "GET",
+				"url": {
+				"raw": "{{base_url}}/api/users",
+				"host": ["{{base_url}}"],
+				"path": ["api", "users"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功獲取所有使用者",
+				"status": 200,
+				"description": "成功獲取所有使用者",
+				"body": "[{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"},...]"
+				}
+			]
+			},
+			{
+			"name": "Get a user by ID",
+			"request": {
+				"method": "GET",
+				"url": {
+				"raw": "{{base_url}}/api/users/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "users", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功獲取單個使用者",
+				"status": 200,
+				"description": "成功獲取單個使用者",
+				"body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
+				},
+				{
+				"name": "使用者不存在",
+				"status": 404,
+				"description": "使用者不存在",
+				"body": "{\"message\": \"User not found\"}"
+				}
+			]
+			},
+			{
+			"name": "Create a new user",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"name\":\"John\",\"email\":\"john@example.com\",\"password\":\"password123\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/users",
+				"host": ["{{base_url}}"],
+				"path": ["api", "users"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功創建新使用者",
+				"status": 201,
+				"description": "成功創建新使用者",
+				"body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
+				},
+				{
+				"name": "Email 已存在",
+				"status": 409,
+				"description": "Email 已存在，無法創建新用戶",
+				"body": "{\"message\":\"User with this email already exists\"}"
+				},
+				{
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"],\"email\":[\"The email field is required.\"],\"password\":[\"The password field is required.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "Update an existing user",
+			"request": {
+				"method": "PUT",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"name\":\"John Updated\",\"email\":\"john.updated@example.com\",\"password\":\"newpassword123\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/users/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "users", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功更新使用者",
+				"status": 200,
+				"description": "成功更新使用者",
+				"body": "{\"id\":1,\"name\":\"John Updated\",\"email\":\"john.updated@example.com\"}"
+				},
+				{
+				"name": "使用者不存在",
+				"status": 404,
+				"description": "使用者不存在",
+				"body": "{\"message\": \"User not found\"}"
+				},
+				{
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"email\":[\"The email must be a valid email address.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "Delete a user by ID",
+			"request": {
+				"method": "DELETE",
+				"url": {
+				"raw": "{{base_url}}/api/users/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "users", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功刪除使用者",
+				"status": 200,
+				"description": "成功刪除使用者",
+				"body": "{\"message\": \"User deleted successfully\"}"
+				},
+				{
+				"name": "使用者不存在",
+				"status": 404,
+				"description": "使用者不存在",
+				"body": "{\"message\": \"User not found\"}"
+				}
+			]
+			}
+		]
     },
     {
-      "name": "Authentication",
-      "item": [
-        {
-          "name": "Register a new user",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"name\":\"John\",\"email\":\"john@example.com\",\"password\":\"password123\",\"password_confirmation\":\"password123\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/auth/register",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "register"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功註冊用戶",
-              "status": 201,
-              "description": "用戶註冊成功並發送驗證信。",
-              "body": "{\"message\":\"Registration successful. Please check your email to verify your account.\"}"
-            },
-            {
-              "name": "驗證失敗",
-              "status": 422,
-              "description": "註冊時的資料驗證失敗。",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"password_confirmation\":[\"The password confirmation does not match.\"]}}"
-            }
-          ]
-        },
-        {
-          "name": "User login",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"email\":\"john@example.com\",\"password\":\"password123\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "login"]
-            }
-          },
-          "response": [
-            {
-              "name": "登入成功",
-              "status": 200,
-              "description": "用戶成功登入。",
-              "body": "{\"user\":{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"},\"access_token\":\"token\",\"token_type\":\"Bearer\"}"
-            },
-            {
-              "name": "登入失敗",
-              "status": 401,
-              "description": "登入失敗，憑證無效。",
-              "body": "{\"message\": \"Invalid login credentials\"}"
-            }            
-          ]
-        },
-        {
-          "name": "User logout",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{access_token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/api/auth/logout",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "logout"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功登出",
-              "status": 200,
-              "description": "用戶成功登出。",
-              "body": "{\"message\": \"Successfully logged out\"}"
-            },
-            {
-              "name": "未授權",
-              "status": 401,
-              "description": "無效的 Token 或未認證。",
-              "body": "{\"message\": \"Unauthorized\"}"
-            }
-          ]
-        },
-        {
-          "name": "Get current user",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{access_token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/api/auth/user",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "user"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功獲取用戶資料",
-              "status": 200,
-              "description": "成功獲取當前用戶的資料。",
-              "body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
-            },
-            {
-              "name": "未授權",
-              "status": 401,
-              "description": "用戶未經認證。",
-              "body": "{\"message\": \"Unauthorized\"}"
-            }
-          ]
-        },
-        {
-          "name": "Verify email address",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "{{base_url}}/api/auth/email/verify/1/abcdef123456",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "email", "verify", "1", "abcdef123456"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功驗證電子郵件",
-              "status": 200,
-              "description": "電子郵件驗證成功。",
-              "body": "{\"message\": \"Email verification successful.\"}"
-            },
-            {
-              "name": "用戶不存在",
-              "status": 404,
-              "description": "無法找到對應的用戶。",
-              "body": "{\"message\": \"User not found.\"}"
-            },
-            {
-              "name": "驗證連結無效",
-              "status": 403,
-              "description": "驗證連結無效。",
-              "body": "{\"message\": \"Invalid verification link.\"}"
-            },
-            {
-              "name": "驗證連結已過期",
-              "status": 403,
-              "description": "驗證連結無效或已過期。",
-              "body": "{\"message\": \"Invalid or expired verification link.\"}"
-            },
-            {
-              "name": "電子郵件已驗證",
-              "status": 200,
-              "description": "電子郵件已經被驗證過。",
-              "body": "{\"message\": \"Email is already verified.\"}"
-            }
-          ]
-        },
-        {
-          "name": "Resend verification email",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{access_token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/api/auth/email/resend",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "email", "resend"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功重新發送驗證郵件",
-              "status": 200,
-              "description": "驗證郵件重新發送成功。",
-              "body": "{\"message\": \"Verification email resent successfully.\"}"
-            },
-            {
-                "name": "電子郵件已驗證",
-                "status": 200,
-                "description": "用戶的電子郵件已經被驗證，無需重新發送驗證郵件。",
-                "body": "{\"message\": \"Email is already verified.\"}"
-            },
-            {
-              "name": "未授權",
-              "status": 401,
-              "description": "用戶未經認證。",
-              "body": "{\"message\": \"Unauthorized\"}"
-            }
-          ]
-        }
-      ]
+		"name": "Authentication",
+		"item": [
+			{
+			"name": "Register a new user",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"name\":\"John\",\"email\":\"john@example.com\",\"password\":\"password123\",\"password_confirmation\":\"password123\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/auth/register",
+				"host": ["{{base_url}}"],
+				"path": ["api", "auth", "register"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功註冊用戶",
+				"status": 201,
+				"description": "用戶註冊成功並發送驗證信。",
+				"body": "{\"message\":\"Registration successful. Please check your email to verify your account.\"}"
+				},
+				{
+				"name": "驗證失敗",
+				"status": 422,
+				"description": "註冊時的資料驗證失敗。",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"password_confirmation\":[\"The password confirmation does not match.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "User login",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"email\":\"john@example.com\",\"password\":\"password123\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/auth/login",
+				"host": ["{{base_url}}"],
+				"path": ["api", "auth", "login"]
+				}
+			},
+			"response": [
+				{
+				"name": "登入成功",
+				"status": 200,
+				"description": "用戶成功登入。",
+				"body": "{\"user\":{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"},\"access_token\":\"token\",\"token_type\":\"Bearer\"}"
+				},
+				{
+				"name": "登入失敗",
+				"status": 401,
+				"description": "登入失敗，憑證無效。",
+				"body": "{\"message\": \"Invalid login credentials\"}"
+				}            
+			]
+			},
+			{
+			"name": "User logout",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{access_token}}"
+				}
+				],
+				"url": {
+				"raw": "{{base_url}}/api/auth/logout",
+				"host": ["{{base_url}}"],
+				"path": ["api", "auth", "logout"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功登出",
+				"status": 200,
+				"description": "用戶成功登出。",
+				"body": "{\"message\": \"Successfully logged out\"}"
+				},
+				{
+				"name": "未授權",
+				"status": 401,
+				"description": "無效的 Token 或未認證。",
+				"body": "{\"message\": \"Unauthorized\"}"
+				}
+			]
+			},
+			{
+			"name": "Get current user",
+			"request": {
+				"method": "GET",
+				"header": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{access_token}}"
+				}
+				],
+				"url": {
+				"raw": "{{base_url}}/api/auth/user",
+				"host": ["{{base_url}}"],
+				"path": ["api", "auth", "user"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功獲取用戶資料",
+				"status": 200,
+				"description": "成功獲取當前用戶的資料。",
+				"body": "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}"
+				},
+				{
+				"name": "未授權",
+				"status": 401,
+				"description": "用戶未經認證。",
+				"body": "{\"message\": \"Unauthorized\"}"
+				}
+			]
+			},
+			{
+			"name": "Verify email address",
+			"request": {
+				"method": "GET",
+				"url": {
+				"raw": "{{base_url}}/api/auth/email/verify/1/abcdef123456",
+				"host": ["{{base_url}}"],
+				"path": ["api", "auth", "email", "verify", "1", "abcdef123456"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功驗證電子郵件",
+				"status": 200,
+				"description": "電子郵件驗證成功。",
+				"body": "{\"message\": \"Email verification successful.\"}"
+				},
+				{
+				"name": "用戶不存在",
+				"status": 404,
+				"description": "無法找到對應的用戶。",
+				"body": "{\"message\": \"User not found.\"}"
+				},
+				{
+				"name": "驗證連結無效",
+				"status": 403,
+				"description": "驗證連結無效。",
+				"body": "{\"message\": \"Invalid verification link.\"}"
+				},
+				{
+				"name": "驗證連結已過期",
+				"status": 403,
+				"description": "驗證連結無效或已過期。",
+				"body": "{\"message\": \"Invalid or expired verification link.\"}"
+				},
+				{
+				"name": "電子郵件已驗證",
+				"status": 200,
+				"description": "電子郵件已經被驗證過。",
+				"body": "{\"message\": \"Email is already verified.\"}"
+				}
+			]
+			},
+			{
+			"name": "Resend verification email",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{access_token}}"
+				}
+				],
+				"url": {
+				"raw": "{{base_url}}/api/auth/email/resend",
+				"host": ["{{base_url}}"],
+				"path": ["api", "auth", "email", "resend"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功重新發送驗證郵件",
+				"status": 200,
+				"description": "驗證郵件重新發送成功。",
+				"body": "{\"message\": \"Verification email resent successfully.\"}"
+				},
+				{
+					"name": "電子郵件已驗證",
+					"status": 200,
+					"description": "用戶的電子郵件已經被驗證，無需重新發送驗證郵件。",
+					"body": "{\"message\": \"Email is already verified.\"}"
+				},
+				{
+				"name": "未授權",
+				"status": 401,
+				"description": "用戶未經認證。",
+				"body": "{\"message\": \"Unauthorized\"}"
+				}
+			]
+			}
+		]
     },
     {
-      "name": "Email",
-      "item": [
-        {
-          "name": "Send Test Email",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"to\":\"recipient@example.com\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/email/send",
-              "host": ["{{base_url}}"],
-              "path": ["api", "email", "send"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功發送測試郵件",
-              "status": 200,
-              "description": "成功發送測試郵件",
-              "body": "{\"message\":\"Email sent successfully!\"}"
-            },
-            {
-              "name": "請求驗證失敗",
-              "status": 422,
-              "description": "輸入的數據驗證失敗，通常是電子郵件格式不正確",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"to\":[\"The to field is required.\"]}}"
-            },
-            {
-              "name": "發送失敗",
-              "status": 500,
-              "description": "伺服器內部錯誤導致郵件未成功發送",
-              "body": "{\"error\":\"Failed to send email.\",\"details\":\"SMTP connection failed.\"}"
-            }
-          ]
-        }
-      ]
+		"name": "Email",
+		"item": [
+			{
+			"name": "Send Test Email",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"to\":\"recipient@example.com\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/email/send",
+				"host": ["{{base_url}}"],
+				"path": ["api", "email", "send"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功發送測試郵件",
+				"status": 200,
+				"description": "成功發送測試郵件",
+				"body": "{\"message\":\"Email sent successfully!\"}"
+				},
+				{
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "輸入的數據驗證失敗，通常是電子郵件格式不正確",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"to\":[\"The to field is required.\"]}}"
+				},
+				{
+				"name": "發送失敗",
+				"status": 500,
+				"description": "伺服器內部錯誤導致郵件未成功發送",
+				"body": "{\"error\":\"Failed to send email.\",\"details\":\"SMTP connection failed.\"}"
+				}
+			]
+			}
+		]
     },
     {
-      "name": "Password Management",
-      "item": [
-        {
-          "name": "Forgot password",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"email\":\"john@example.com\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/auth/password/forgot",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "password", "forgot"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功發送密碼重置連結",
-              "status": 200,
-              "description": "密碼重置連結已發送到用戶的電子郵件。",
-              "body": "{\"message\":\"Password reset link sent to your email.\"}"
-            },
-            {
-              "name": "用戶不存在",
-              "status": 422,
-              "description": "請求的電子郵件不存在於系統中。",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"email\":[\"The selected email is invalid.\"]}}"
-            }
-          ]
-        },
-        {
-          "name": "Reset password",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"email\":\"john@example.com\",\"token\":\"reset-token\",\"password\":\"newpassword123\",\"password_confirmation\":\"newpassword123\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/auth/password/reset",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "password", "reset"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功重置密碼",
-              "status": 200,
-              "description": "用戶密碼已成功重置，可以使用新密碼登入。",
-              "body": "{\"message\":\"Password reset successful. You can now log in with your new password.\"}"
-            },
-            {
-              "name": "無效或過期的令牌",
-              "status": 400,
-              "description": "提供的重置令牌無效或已過期。",
-              "body": "{\"message\":\"Invalid or expired token.\"}"
-            },
-            {
-              "name": "驗證失敗",
-              "status": 422,
-              "description": "新密碼的資料驗證失敗，例如密碼長度不足或確認密碼不匹配。",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"password_confirmation\":[\"The password confirmation does not match.\"]}}"
-            }
-          ]
-        },
-        {
-          "name": "Update password",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{access_token}}"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"current_password\":\"oldpassword\",\"new_password\":\"newpassword123\",\"new_password_confirmation\":\"newpassword123\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/auth/password/update",
-              "host": ["{{base_url}}"],
-              "path": ["api", "auth", "password", "update"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功更新密碼",
-              "status": 200,
-              "description": "用戶密碼更新成功。",
-              "body": "{\"message\":\"Password updated successfully.\"}"
-            },
-            {
-              "name": "當前密碼錯誤",
-              "status": 422,
-              "description": "提供的當前密碼與系統記錄的密碼不匹配。",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"current_password\":[\"The current password is incorrect.\"]}}"
-            },
-            {
-              "name": "新密碼驗證失敗",
-              "status": 422,
-              "description": "新密碼的資料驗證失敗，例如密碼長度不足或確認密碼不匹配。",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"new_password_confirmation\":[\"The new password confirmation does not match.\"]}}"
-            },
-            {
-              "name": "未授權",
-              "status": 401,
-              "description": "驗證 Token 不正確或已過期。",
-              "body": "{\"message\":\"Unauthorized\"}"
-            }
-          ]
-        }        
-      ]
+		"name": "Password Management",
+		"item": [
+			{
+			"name": "Forgot password",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"email\":\"john@example.com\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/auth/password/forgot",
+				"host": ["{{base_url}}"],
+				"path": ["api", "auth", "password", "forgot"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功發送密碼重置連結",
+				"status": 200,
+				"description": "密碼重置連結已發送到用戶的電子郵件。",
+				"body": "{\"message\":\"Password reset link sent to your email.\"}"
+				},
+				{
+				"name": "用戶不存在",
+				"status": 422,
+				"description": "請求的電子郵件不存在於系統中。",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"email\":[\"The selected email is invalid.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "Reset password",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"email\":\"john@example.com\",\"token\":\"reset-token\",\"password\":\"newpassword123\",\"password_confirmation\":\"newpassword123\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/auth/password/reset",
+				"host": ["{{base_url}}"],
+				"path": ["api", "auth", "password", "reset"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功重置密碼",
+				"status": 200,
+				"description": "用戶密碼已成功重置，可以使用新密碼登入。",
+				"body": "{\"message\":\"Password reset successful. You can now log in with your new password.\"}"
+				},
+				{
+				"name": "無效或過期的令牌",
+				"status": 400,
+				"description": "提供的重置令牌無效或已過期。",
+				"body": "{\"message\":\"Invalid or expired token.\"}"
+				},
+				{
+				"name": "驗證失敗",
+				"status": 422,
+				"description": "新密碼的資料驗證失敗，例如密碼長度不足或確認密碼不匹配。",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"password_confirmation\":[\"The password confirmation does not match.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "Update password",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Authorization",
+					"value": "Bearer {{access_token}}"
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"current_password\":\"oldpassword\",\"new_password\":\"newpassword123\",\"new_password_confirmation\":\"newpassword123\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/auth/password/update",
+				"host": ["{{base_url}}"],
+				"path": ["api", "auth", "password", "update"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功更新密碼",
+				"status": 200,
+				"description": "用戶密碼更新成功。",
+				"body": "{\"message\":\"Password updated successfully.\"}"
+				},
+				{
+				"name": "當前密碼錯誤",
+				"status": 422,
+				"description": "提供的當前密碼與系統記錄的密碼不匹配。",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"current_password\":[\"The current password is incorrect.\"]}}"
+				},
+				{
+				"name": "新密碼驗證失敗",
+				"status": 422,
+				"description": "新密碼的資料驗證失敗，例如密碼長度不足或確認密碼不匹配。",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"new_password_confirmation\":[\"The new password confirmation does not match.\"]}}"
+				},
+				{
+				"name": "未授權",
+				"status": 401,
+				"description": "驗證 Token 不正確或已過期。",
+				"body": "{\"message\":\"Unauthorized\"}"
+				}
+			]
+			}        
+		]
     },
     {
-      "name": "Roles",
-      "item": [
-        {
-          "name": "Get all roles",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "{{base_url}}/api/roles",
-              "host": ["{{base_url}}"],
-              "path": ["api", "roles"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功獲取所有角色",
-              "status": 200,
-              "description": "成功獲取所有角色",
-              "body": "[{\"id\":1,\"name\":\"admin\",\"description\":\"Administrator role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}]"
-            }
-          ]
-        },
-        {
-          "name": "Get a role by ID",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "{{base_url}}/api/roles/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "roles", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功獲取單一角色",
-              "status": 200,
-              "description": "成功獲取單一角色",
-              "body": "{\"id\":1,\"name\":\"admin\",\"description\":\"Administrator role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
-            },
-            {
-              "name": "角色不存在",
-              "status": 404,
-              "description": "角色不存在",
-              "body": "{\"message\": \"Role not found\"}"
-            }
-          ]
-        },
-        {
-          "name": "Create a new role",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"name\":\"admin\",\"description\":\"Administrator role\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/roles",
-              "host": ["{{base_url}}"],
-              "path": ["api", "roles"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功創建新角色",
-              "status": 201,
-              "description": "成功創建新角色",
-              "body": "{\"id\":1,\"name\":\"admin\",\"description\":\"Administrator role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
-            },
-            {
-              "name": "請求驗證失敗",
-              "status": 422,
-              "description": "請求驗證失敗",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
-            }
-          ]
-        },
-        {
-          "name": "Update an existing role",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"name\":\"editor\",\"description\":\"Editor role\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/roles/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "roles", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功更新角色",
-              "status": 200,
-              "description": "成功更新角色",
-              "body": "{\"id\":1,\"name\":\"editor\",\"description\":\"Editor role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T12:00:00Z\"}"
-            },
-            {
-              "name": "角色不存在",
-              "status": 404,
-              "description": "角色不存在",
-              "body": "{\"message\": \"Role not found\"}"
-            },
-            {
-              "name": "請求驗證失敗",
-              "status": 422,
-              "description": "請求驗證失敗",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
-            }
-          ]
-        },
-        {
-          "name": "Delete a role by ID",
-          "request": {
-            "method": "DELETE",
-            "url": {
-              "raw": "{{base_url}}/api/roles/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "roles", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功刪除角色",
-              "status": 200,
-              "description": "成功刪除角色",
-              "body": "{\"message\": \"Role deleted successfully\"}"
-            },
-            {
-              "name": "角色不存在",
-              "status": 404,
-              "description": "角色不存在",
-              "body": "{\"message\": \"Role not found\"}"
-            }
-          ]
-        }
-      ]
+		"name": "Roles",
+		"item": [
+			{
+			"name": "Get all roles",
+			"request": {
+				"method": "GET",
+				"url": {
+				"raw": "{{base_url}}/api/roles",
+				"host": ["{{base_url}}"],
+				"path": ["api", "roles"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功獲取所有角色",
+				"status": 200,
+				"description": "成功獲取所有角色",
+				"body": "[{\"id\":1,\"name\":\"admin\",\"description\":\"Administrator role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}]"
+				}
+			]
+			},
+			{
+			"name": "Get a role by ID",
+			"request": {
+				"method": "GET",
+				"url": {
+				"raw": "{{base_url}}/api/roles/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "roles", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功獲取單一角色",
+				"status": 200,
+				"description": "成功獲取單一角色",
+				"body": "{\"id\":1,\"name\":\"admin\",\"description\":\"Administrator role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
+				},
+				{
+				"name": "角色不存在",
+				"status": 404,
+				"description": "角色不存在",
+				"body": "{\"message\": \"Role not found\"}"
+				}
+			]
+			},
+			{
+			"name": "Create a new role",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"name\":\"admin\",\"description\":\"Administrator role\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/roles",
+				"host": ["{{base_url}}"],
+				"path": ["api", "roles"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功創建新角色",
+				"status": 201,
+				"description": "成功創建新角色",
+				"body": "{\"id\":1,\"name\":\"admin\",\"description\":\"Administrator role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
+				},
+				{
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "Update an existing role",
+			"request": {
+				"method": "PUT",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"name\":\"editor\",\"description\":\"Editor role\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/roles/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "roles", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功更新角色",
+				"status": 200,
+				"description": "成功更新角色",
+				"body": "{\"id\":1,\"name\":\"editor\",\"description\":\"Editor role\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T12:00:00Z\"}"
+				},
+				{
+				"name": "角色不存在",
+				"status": 404,
+				"description": "角色不存在",
+				"body": "{\"message\": \"Role not found\"}"
+				},
+				{
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "Delete a role by ID",
+			"request": {
+				"method": "DELETE",
+				"url": {
+				"raw": "{{base_url}}/api/roles/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "roles", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功刪除角色",
+				"status": 200,
+				"description": "成功刪除角色",
+				"body": "{\"message\": \"Role deleted successfully\"}"
+				},
+				{
+				"name": "角色不存在",
+				"status": 404,
+				"description": "角色不存在",
+				"body": "{\"message\": \"Role not found\"}"
+				}
+			]
+			}
+		]
     },
     {
-      "name": "Permissions",
-      "item": [
-        {
-          "name": "Get all permissions",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "{{base_url}}/api/permissions",
-              "host": ["{{base_url}}"],
-              "path": ["api", "permissions"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功獲取所有權限",
-              "status": 200,
-              "description": "成功獲取所有權限",
-              "body": "[{\"id\":1,\"name\":\"create_user\",\"description\":\"Permission to create users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}]"
-            }
-          ]
-        },
-        {
-          "name": "Get a permission by ID",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "{{base_url}}/api/permissions/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "permissions", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功獲取單一權限",
-              "status": 200,
-              "description": "成功獲取單一權限",
-              "body": "{\"id\":1,\"name\":\"create_user\",\"description\":\"Permission to create users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
-            },
-            {
-              "name": "權限不存在",
-              "status": 404,
-              "description": "權限不存在",
-              "body": "{\"message\": \"Permission not found\"}"
-            }
-          ]
-        },
-        {
-          "name": "Create a new permission",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"name\":\"create_user\",\"description\":\"Permission to create users\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/permissions",
-              "host": ["{{base_url}}"],
-              "path": ["api", "permissions"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功創建新權限",
-              "status": 201,
-              "description": "成功創建新權限",
-              "body": "{\"id\":1,\"name\":\"create_user\",\"description\":\"Permission to create users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
-            },
-            {
-              "name": "請求驗證失敗",
-              "status": 422,
-              "description": "請求驗證失敗",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
-            }
-          ]
-        },
-        {
-          "name": "Update an existing permission",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"name\":\"edit_user\",\"description\":\"Permission to edit users\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/permissions/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "permissions", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功更新權限",
-              "status": 200,
-              "description": "成功更新權限",
-              "body": "{\"id\":1,\"name\":\"edit_user\",\"description\":\"Permission to edit users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T12:00:00Z\"}"
-            },
-            {
-              "name": "權限不存在",
-              "status": 404,
-              "description": "權限不存在",
-              "body": "{\"message\": \"Permission not found\"}"
-            },
-            {
-              "name": "請求驗證失敗",
-              "status": 422,
-              "description": "請求驗證失敗",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
-            }
-          ]
-        },
-        {
-          "name": "Delete a permission by ID",
-          "request": {
-            "method": "DELETE",
-            "url": {
-              "raw": "{{base_url}}/api/permissions/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "permissions", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功刪除權限",
-              "status": 200,
-              "description": "成功刪除權限",
-              "body": "{\"message\": \"Permission deleted successfully\"}"
-            },
-            {
-              "name": "權限不存在",
-              "status": 404,
-              "description": "權限不存在",
-              "body": "{\"message\": \"Permission not found\"}"
-            }
-          ]
-        }
-      ]
-    },          
+		"name": "Permissions",
+		"item": [
+			{
+			"name": "Get all permissions",
+			"request": {
+				"method": "GET",
+				"url": {
+				"raw": "{{base_url}}/api/permissions",
+				"host": ["{{base_url}}"],
+				"path": ["api", "permissions"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功獲取所有權限",
+				"status": 200,
+				"description": "成功獲取所有權限",
+				"body": "[{\"id\":1,\"name\":\"create_user\",\"description\":\"Permission to create users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}]"
+				}
+			]
+			},
+			{
+			"name": "Get a permission by ID",
+			"request": {
+				"method": "GET",
+				"url": {
+				"raw": "{{base_url}}/api/permissions/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "permissions", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功獲取單一權限",
+				"status": 200,
+				"description": "成功獲取單一權限",
+				"body": "{\"id\":1,\"name\":\"create_user\",\"description\":\"Permission to create users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
+				},
+				{
+				"name": "權限不存在",
+				"status": 404,
+				"description": "權限不存在",
+				"body": "{\"message\": \"Permission not found\"}"
+				}
+			]
+			},
+			{
+			"name": "Create a new permission",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"name\":\"create_user\",\"description\":\"Permission to create users\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/permissions",
+				"host": ["{{base_url}}"],
+				"path": ["api", "permissions"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功創建新權限",
+				"status": 201,
+				"description": "成功創建新權限",
+				"body": "{\"id\":1,\"name\":\"create_user\",\"description\":\"Permission to create users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}"
+				},
+				{
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "Update an existing permission",
+			"request": {
+				"method": "PUT",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"name\":\"edit_user\",\"description\":\"Permission to edit users\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/permissions/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "permissions", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功更新權限",
+				"status": 200,
+				"description": "成功更新權限",
+				"body": "{\"id\":1,\"name\":\"edit_user\",\"description\":\"Permission to edit users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T12:00:00Z\"}"
+				},
+				{
+				"name": "權限不存在",
+				"status": 404,
+				"description": "權限不存在",
+				"body": "{\"message\": \"Permission not found\"}"
+				},
+				{
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "Delete a permission by ID",
+			"request": {
+				"method": "DELETE",
+				"url": {
+				"raw": "{{base_url}}/api/permissions/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "permissions", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功刪除權限",
+				"status": 200,
+				"description": "成功刪除權限",
+				"body": "{\"message\": \"Permission deleted successfully\"}"
+				},
+				{
+				"name": "權限不存在",
+				"status": 404,
+				"description": "權限不存在",
+				"body": "{\"message\": \"Permission not found\"}"
+				}
+			]
+			}
+		]
+    },
+	{
+		"name": "Manage role permissions",
+		"item": [
+			{
+			"name": "Get all permissions of a role",
+			"request": {
+				"method": "GET",
+				"url": {
+				"raw": "{{base_url}}/api/roles/:id/permissions",
+				"host": ["{{base_url}}"],
+				"path": ["api", "roles", ":id", "permissions"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功獲取角色的所有權限",
+				"status": 200,
+				"description": "成功獲取角色的所有權限",
+				"body": "[{\"id\":1,\"name\":\"create_user\",\"description\":\"Can create users\",\"created_at\":\"2024-12-13T00:00:00Z\",\"updated_at\":\"2024-12-13T00:00:00Z\"}]"
+				},
+				{
+				"name": "角色不存在",
+				"status": 404,
+				"description": "角色不存在",
+				"body": "{\"message\": \"Role not found\"}"
+				}
+			]
+			},
+			{
+			"name": "Assign permissions to a role",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"permissions\": [1, 2, 3]}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/roles/:id/permissions",
+				"host": ["{{base_url}}"],
+				"path": ["api", "roles", ":id", "permissions"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功分配權限到角色",
+				"status": 200,
+				"description": "成功分配權限到角色",
+				"body": "{\"message\": \"Permissions assigned successfully\",\"permissions\": [{\"id\":1,\"name\":\"create_user\",\"description\":\"Can create users\"}]}"
+				},
+				{
+				"name": "角色不存在",
+				"status": 404,
+				"description": "角色不存在",
+				"body": "{\"message\": \"Role not found\"}"
+				},
+				{
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"permissions\":[\"The permissions field is required.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "Remove permissions from a role",
+			"request": {
+				"method": "DELETE",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"permissions\": [1, 2]}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/roles/:id/permissions",
+				"host": ["{{base_url}}"],
+				"path": ["api", "roles", ":id", "permissions"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功移除角色的權限",
+				"status": 200,
+				"description": "成功移除角色的權限",
+				"body": "{\"message\": \"Permissions removed successfully\",\"permissions\": []}"
+				},
+				{
+				"name": "角色不存在",
+				"status": 404,
+				"description": "角色不存在",
+				"body": "{\"message\": \"Role not found\"}"
+				},
+				{
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"permissions\":[\"The permissions field is required.\"]}}"
+				}
+			]
+			}
+		]
+	},     
     {
       "name": "Trucks",
       "item": [
