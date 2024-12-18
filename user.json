@@ -1039,7 +1039,156 @@
 			]
 			}
 		]
-	},     
+	},
+	{
+		"name": "User Role Management",
+		"item": [
+			{
+				"name": "Assign roles to a user",
+				"request": {
+					"method": "POST",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": {
+						"mode": "raw",
+						"raw": "{\"roles\":[1,2]}"
+					},
+					"url": {
+						"raw": "{{base_url}}/api/users/:id/roles",
+						"host": ["{{base_url}}"],
+						"path": ["api", "users", ":id", "roles"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功分配角色",
+						"status": 200,
+						"description": "成功分配角色",
+						"body": "{\"status\": \"success\", \"message\": \"Roles assigned successfully\", \"data\": {\"user_id\": 1, \"roles\": [\"admin\", \"editor\"]}}"
+					},
+					{
+						"name": "使用者不存在",
+						"status": 404,
+						"description": "使用者不存在",
+						"body": "{\"message\": \"User  not found\"}"
+					},
+					{
+						"name": "角色不存在",
+						"status": 404,
+						"description": "角色不存在",
+						"body": "{\"message\": \"Role not found\"}"
+					}
+				]
+			},
+			{
+				"name": "Remove a role from a user",
+				"request": {
+					"method": "DELETE",
+					"url": {
+						"raw": "{{base_url}}/api/users/:id/roles/:role_id",
+						"host": ["{{base_url}}"],
+						"path": ["api", "users", ":id", "roles", ":role_id"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							},
+							{
+								"key": "role_id",
+								"value": "2"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功移除角色",
+						"status": 200,
+						"description": "成功移除角色",
+						"body": "{\"status\": \"success\", \"message\": \"Role removed successfully\", \"data\": {\"user_id\": 1, \"role_id\": 2}}"
+					},
+					{
+						"name": "角色未分配",
+						"status": 400,
+						"description": "角色未分配",
+						"body": "{\"message\": \"Role not assigned to user\"}"
+					}
+				]
+			},
+			{
+				"name": "Get roles of a user",
+				"request": {
+					"method": "GET",
+					"url": {
+						"raw": "{{base_url}}/api/users/:id/roles",
+						"host": ["{{base_url}}"],
+						"path": ["api", "users", ":id", "roles"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功獲取用戶角色",
+						"status": 200,
+						"description": "成功獲取用戶角色",
+						"body": "{\"status\": \"success\", \"data\": {\"user_id\": 1, \"roles\": [{\"id\": 1, \"name\": \"admin\", \"description\": \"System administrator\"}, {\"id\": 2, \"name\": \"editor\", \"description\": \"Content editor\"}]}}"
+					},
+					{
+						"name": "使用者不存在",
+						"status": 404,
+						"description": "使用者不存在",
+						"body": "{\"message\": \"User not found\"}"
+					}
+				]
+			},
+			{
+				"name": "Get users assigned to a role",
+				"request": {
+					"method": "GET",
+					"url": {
+						"raw": "{{base_url}}/api/roles/:id/users",
+						"host": ["{{base_url}}"],
+						"path": ["api", "roles", ":id", "users"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功獲取分配了角色的用戶",
+						"status": 200,
+						"description": "成功獲取分配了角色的用戶",
+						"body": "{\"status\": \"success\", \"data\": {\"role_id\": 1, \"users\": [{\"id\": 1, \"name\": \"John\", \"email\": \"john@example.com\"}, {\"id\": 2, \"name\": \"Jane\", \"email\": \"jane@example.com\"}]}}"
+					},
+					{
+						"name": "角色不存在",
+						"status": 404,
+						"description": "角色不存在",
+						"body": "{\"message\": \"Role not found\"}"
+					}
+				]
+			}
+		]
+	},	 
     {
       "name": "Trucks",
       "item": [
