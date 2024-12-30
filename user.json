@@ -2404,7 +2404,175 @@
 			]
 			}
 		]
-	}				   
+	},
+	{
+		"name": "Countries",
+		"item": [
+			{
+				"name": "Get all countries",
+				"request": {
+					"method": "GET",
+					"url": {
+						"raw": "{{base_url}}/api/countries",
+						"host": ["{{base_url}}"],
+						"path": ["api", "countries"]
+					}
+				},
+				"response": [
+					{
+						"name": "成功獲取所有國家",
+						"status": 200,
+						"description": "成功獲取所有國家",
+						"body": "[{\"id\":1,\"name\":\"台灣\",\"region_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}]"
+					}
+				]
+			},
+			{
+				"name": "Get a country by ID",
+				"request": {
+					"method": "GET",
+					"url": {
+						"raw": "{{base_url}}/api/countries/:id",
+						"host": ["{{base_url}}"],
+						"path": ["api", "countries", ":id"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功獲取單一國家",
+						"status": 200,
+						"description": "成功獲取單一國家",
+						"body": "{\"id\":1,\"name\":\"台灣\",\"region_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+					},
+					{
+						"name": "國家不存在",
+						"status": 404,
+						"description": "國家不存在",
+						"body": "{\"message\": \"Country not found\"}"
+					}
+				]
+			},
+			{
+				"name": "Create a new country",
+				"request": {
+					"method": "POST",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": {
+						"mode": "raw",
+						"raw": "{\"name\":\"台灣\",\"region_id\":1}"
+					},
+					"url": {
+						"raw": "{{base_url}}/api/countries",
+						"host": ["{{base_url}}"],
+						"path": ["api", "countries"]
+					}
+				},
+				"response": [
+					{
+						"name": "成功創建新國家",
+						"status": 201,
+						"description": "成功創建新國家",
+						"body": "{\"id\":1,\"name\":\"台灣\",\"region_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+					},
+					{
+						"name": "請求驗證失敗",
+						"status": 422,
+						"description": "請求驗證失敗",
+						"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"],\"region_id\":[\"The region_id field is required.\"]}}"
+					}
+				]
+			},
+			{
+				"name": "Update an existing country",
+				"request": {
+					"method": "PUT",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": {
+						"mode": "raw",
+						"raw": "{\"name\":\"日本\",\"region_id\":2}"
+					},
+					"url": {
+						"raw": "{{base_url}}/api/countries/:id",
+						"host": ["{{base_url}}"],
+						"path": ["api", "countries", ":id"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功更新國家",
+						"status": 200,
+						"description": "成功更新國家",
+						"body": "{\"id\":1,\"name\":\"日本\",\"region_id\":2,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:30:00\"}"
+					},
+					{
+						"name": "國家不存在",
+						"status": 404,
+						"description": "國家不存在",
+						"body": "{\"message\": \"Country not found\"}"
+					},
+					{
+						"name": "請求驗證失敗",
+						"status": 422,
+						"description": "請求驗證失敗",
+						"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+					}
+				]
+			},
+			{
+				"name": "Delete a country by ID",
+				"request": {
+					"method": "DELETE",
+					"url": {
+						"raw": "{{base_url}}/api/countries/:id",
+						"host": ["{{base_url}}"],
+						"path": ["api", "countries", ":id"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功刪除國家",
+						"status": 200,
+						"description": "成功刪除國家",
+						"body": "{\"message\": \"Country deleted successfully\"}"
+					},
+					{
+						"name": "國家不存在",
+						"status": 404,
+						"description": "國家不存在",
+						"body": "{\"message\": \"Country not found\"}"
+					}
+				]
+			}
+		]
+	}					   
   ],
   "variable": [
     {
