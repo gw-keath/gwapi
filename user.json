@@ -395,42 +395,42 @@
 			]
 			},
 			{
-				"name": "Authentication Overview",
-				"request": {
-					"description": "所有受保護的 API 都需要使用 Bearer Token 進行身份驗證。\n\n每個請求必須在 HTTP Header 中包含以下內容：\n\n**Header:**\n```http\nAuthorization: Bearer {{access_token}}\n```\n\n如果未提供 Token 或 Token 無效，API 將返回對應的錯誤響應。",
-					"method": "GET",
-					"header": [
-						{
-							"key": "Authorization",
-							"value": "Bearer {{access_token}}"
-						}
-					],
-					"url": {
-						"raw": "{{base_url}}/api/protected",
-						"host": ["{{base_url}}"],
-						"path": ["api", "protected"]
+			"name": "Authentication Overview",
+			"request": {
+				"description": "所有受保護的 API 都需要使用 Bearer Token 進行身份驗證。\n\n每個請求必須在 HTTP Header 中包含以下內容：\n\n**Header:**\n```http\nAuthorization: Bearer {{access_token}}\n```\n\n如果未提供 Token 或 Token 無效，API 將返回對應的錯誤響應。",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
 					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/protected",
+					"host": ["{{base_url}}"],
+					"path": ["api", "protected"]
+				}
+			},
+			"response": [
+				{
+					"name": "成功響應",
+					"status": 200,
+					"description": "身份驗證成功，請求被授權執行。",
+					"body": "{\"message\": \"Request successfully authenticated.\"}"
 				},
-				"response": [
-					{
-						"name": "成功響應",
-						"status": 200,
-						"description": "身份驗證成功，請求被授權執行。",
-						"body": "{\"message\": \"Request successfully authenticated.\"}"
-					},
-					{
-						"name": "未授權",
-						"status": 401,
-						"description": "未提供有效的 Token 或 Token 已過期。",
-						"body": "{\"message\": \"Unauthorized\"}"
-					},
-					{
-						"name": "禁止訪問",
-						"status": 403,
-						"description": "用戶已認證，但未具備所需權限。",
-						"body": "{\"message\": \"Forbidden\", \"permission\": \"required_permission\"}"
-					}
-				]
+				{
+					"name": "未授權",
+					"status": 401,
+					"description": "未提供有效的 Token 或 Token 已過期。",
+					"body": "{\"message\": \"Unauthorized\"}"
+				},
+				{
+					"name": "禁止訪問",
+					"status": 403,
+					"description": "用戶已認證，但未具備所需權限。",
+					"body": "{\"message\": \"Forbidden\", \"permission\": \"required_permission\"}"
+				}
+			]
 			}
 		]
     },
@@ -2036,7 +2036,8 @@
           ]
         }
       ]
-    },{
+    },
+	{
       "name": "HBL Terminals",
       "item": [
         {
@@ -2235,7 +2236,175 @@
 		]
 		}		  
       ]
-    }               
+    },
+	{
+		"name": "Regions",
+		"item": [
+			{
+			"name": "Get all regions",
+			"request": {
+				"method": "GET",
+				"url": {
+				"raw": "{{base_url}}/api/regions",
+				"host": ["{{base_url}}"],
+				"path": ["api", "regions"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功獲取所有洲別",
+				"status": 200,
+				"description": "成功獲取所有洲別",
+				"body": "[{\"id\":1,\"name\":\"亞洲\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}]"
+				}
+			]
+			},
+			{
+			"name": "Get a region by ID",
+			"request": {
+				"method": "GET",
+				"url": {
+				"raw": "{{base_url}}/api/regions/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "regions", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功獲取單一洲別",
+				"status": 200,
+				"description": "成功獲取單一洲別",
+				"body": "{\"id\":1,\"name\":\"亞洲\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+				},
+				{
+				"name": "洲別不存在",
+				"status": 404,
+				"description": "洲別不存在",
+				"body": "{\"message\": \"Region not found\"}"
+				}
+			]
+			},
+			{
+			"name": "Create a new region",
+			"request": {
+				"method": "POST",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"name\":\"亞洲\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/regions",
+				"host": ["{{base_url}}"],
+				"path": ["api", "regions"]
+				}
+			},
+			"response": [
+				{
+				"name": "成功創建新洲別",
+				"status": 201,
+				"description": "成功創建新洲別",
+				"body": "{\"id\":1,\"name\":\"亞洲\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+				},
+				{
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "Update an existing region",
+			"request": {
+				"method": "PUT",
+				"header": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+				],
+				"body": {
+				"mode": "raw",
+				"raw": "{\"name\":\"北美洲\"}"
+				},
+				"url": {
+				"raw": "{{base_url}}/api/regions/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "regions", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功更新洲別",
+				"status": 200,
+				"description": "成功更新洲別",
+				"body": "{\"id\":1,\"name\":\"北美洲\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:30:00\"}"
+				},
+				{
+				"name": "洲別不存在",
+				"status": 404,
+				"description": "洲別不存在",
+				"body": "{\"message\": \"Region not found\"}"
+				},
+				{
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+				}
+			]
+			},
+			{
+			"name": "Delete a region by ID",
+			"request": {
+				"method": "DELETE",
+				"url": {
+				"raw": "{{base_url}}/api/regions/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "regions", ":id"],
+				"variable": [
+					{
+					"key": "id",
+					"value": "1"
+					}
+				]
+				}
+			},
+			"response": [
+				{
+				"name": "成功刪除洲別",
+				"status": 200,
+				"description": "成功刪除洲別",
+				"body": "{\"message\": \"Region deleted successfully\"}"
+				},
+				{
+				"name": "洲別不存在",
+				"status": 404,
+				"description": "洲別不存在",
+				"body": "{\"message\": \"Region not found\"}"
+				}
+			]
+			}
+		]
+	}				   
   ],
   "variable": [
     {
