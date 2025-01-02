@@ -2255,7 +2255,7 @@
 				"name": "成功獲取所有洲別",
 				"status": 200,
 				"description": "成功獲取所有洲別",
-				"body": "[{\"id\":1,\"name\":\"亞洲\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}]"
+				"body": "[{\"id\":1,\"name\":\"亞洲\",\"name_en\":\"Asia\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}]"
 				}
 			]
 			},
@@ -2280,7 +2280,7 @@
 				"name": "成功獲取單一洲別",
 				"status": 200,
 				"description": "成功獲取單一洲別",
-				"body": "{\"id\":1,\"name\":\"亞洲\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+				"body": "{\"id\":1,\"name\":\"亞洲\",\"name_en\":\"Asia\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
 				},
 				{
 				"name": "洲別不存在",
@@ -2302,7 +2302,7 @@
 				],
 				"body": {
 				"mode": "raw",
-				"raw": "{\"name\":\"亞洲\"}"
+				"raw": "{\"name\":\"亞洲\",\"name_en\":\"Asia\"}"
 				},
 				"url": {
 				"raw": "{{base_url}}/api/regions",
@@ -2315,7 +2315,7 @@
 				"name": "成功創建新洲別",
 				"status": 201,
 				"description": "成功創建新洲別",
-				"body": "{\"id\":1,\"name\":\"亞洲\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+				"body": "{\"id\":1,\"name\":\"亞洲\",\"name_en\":\"Asia\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
 				},
 				{
 				"name": "請求驗證失敗",
@@ -2337,7 +2337,7 @@
 				],
 				"body": {
 				"mode": "raw",
-				"raw": "{\"name\":\"北美洲\"}"
+				"raw": "{\"name\":\"北美洲\",\"name_en\":\"North America\"}"
 				},
 				"url": {
 				"raw": "{{base_url}}/api/regions/:id",
@@ -2356,7 +2356,7 @@
 				"name": "成功更新洲別",
 				"status": 200,
 				"description": "成功更新洲別",
-				"body": "{\"id\":1,\"name\":\"北美洲\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:30:00\"}"
+				"body": "{\"id\":1,\"name\":\"北美洲\",\"name_en\":\"North America\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:30:00\"}"
 				},
 				{
 				"name": "洲別不存在",
@@ -2423,7 +2423,7 @@
 						"name": "成功獲取所有國家",
 						"status": 200,
 						"description": "成功獲取所有國家",
-						"body": "[{\"id\":1,\"name\":\"台灣\",\"region_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}]"
+						"body": "[{\"id\":1,\"name\":\"台灣\",\"name_en\":\"Taiwan\",\"region_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}]"
 					}
 				]
 			},
@@ -2448,7 +2448,7 @@
 						"name": "成功獲取單一國家",
 						"status": 200,
 						"description": "成功獲取單一國家",
-						"body": "{\"id\":1,\"name\":\"台灣\",\"region_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+						"body": "{\"id\":1,\"name\":\"台灣\",\"name_en\":\"Taiwan\",\"region_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
 					},
 					{
 						"name": "國家不存在",
@@ -2470,7 +2470,7 @@
 					],
 					"body": {
 						"mode": "raw",
-						"raw": "{\"name\":\"台灣\",\"region_id\":1}"
+						"raw": "{\"name\":\"台灣\",\"name_en\":\"Taiwan\",\"region_id\":1}"
 					},
 					"url": {
 						"raw": "{{base_url}}/api/countries",
@@ -2483,7 +2483,7 @@
 						"name": "成功創建新國家",
 						"status": 201,
 						"description": "成功創建新國家",
-						"body": "{\"id\":1,\"name\":\"台灣\",\"region_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+						"body": "{\"id\":1,\"name\":\"台灣\",\"name_en\":\"Taiwan\",\"region_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
 					},
 					{
 						"name": "請求驗證失敗",
@@ -2505,7 +2505,7 @@
 					],
 					"body": {
 						"mode": "raw",
-						"raw": "{\"name\":\"日本\",\"region_id\":2}"
+						"raw": "{\"name\":\"日本\",\"name_en\":\"Japan\",\"region_id\":2}"
 					},
 					"url": {
 						"raw": "{{base_url}}/api/countries/:id",
@@ -2524,7 +2524,7 @@
 						"name": "成功更新國家",
 						"status": 200,
 						"description": "成功更新國家",
-						"body": "{\"id\":1,\"name\":\"日本\",\"region_id\":2,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:30:00\"}"
+						"body": "{\"id\":1,\"name\":\"日本\",\"name_en\":\"Japan\",\"region_id\":2,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:30:00\"}"
 					},
 					{
 						"name": "國家不存在",
@@ -2591,7 +2591,7 @@
 						"name": "成功獲取所有港口",
 						"status": 200,
 						"description": "成功獲取所有港口",
-						"body": "[{\"id\":1,\"name\":\"基隆港\",\"country_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}]"
+						"body": "[{\"id\":1,\"name\":\"基隆港\",\"name_en\":\"Keelung Port\",\"country_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}]"
 					}
 				]
 			},
@@ -2616,7 +2616,7 @@
 						"name": "成功獲取單一港口",
 						"status": 200,
 						"description": "成功獲取單一港口",
-						"body": "{\"id\":1,\"name\":\"基隆港\",\"country_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+						"body": "{\"id\":1,\"name\":\"基隆港\",\"name_en\":\"Keelung Port\",\"country_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
 					},
 					{
 						"name": "港口不存在",
@@ -2638,7 +2638,7 @@
 					],
 					"body": {
 						"mode": "raw",
-						"raw": "{\"name\":\"基隆港\",\"country_id\":1}"
+						"raw": "{\"name\":\"基隆港\",\"name_en\":\"Keelung Port\",\"country_id\":1}"
 					},
 					"url": {
 						"raw": "{{base_url}}/api/ports",
@@ -2651,7 +2651,7 @@
 						"name": "成功創建新港口",
 						"status": 201,
 						"description": "成功創建新港口",
-						"body": "{\"id\":1,\"name\":\"基隆港\",\"country_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+						"body": "{\"id\":1,\"name\":\"基隆港\",\"name_en\":\"Keelung Port\",\"country_id\":1,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
 					},
 					{
 						"name": "請求驗證失敗",
@@ -2673,7 +2673,7 @@
 					],
 					"body": {
 						"mode": "raw",
-						"raw": "{\"name\":\"高雄港\",\"country_id\":2}"
+						"raw": "{\"name\":\"高雄港\",\"name_en\":\"Kaohsiung Port\",\"country_id\":2}"
 					},
 					"url": {
 						"raw": "{{base_url}}/api/ports/:id",
@@ -2692,7 +2692,7 @@
 						"name": "成功更新港口",
 						"status": 200,
 						"description": "成功更新港口",
-						"body": "{\"id\":1,\"name\":\"高雄港\",\"country_id\":2,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:30:00\"}"
+						"body": "{\"id\":1,\"name\":\"高雄港\",\"name_en\":\"Kaohsiung Port\",\"country_id\":2,\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:30:00\"}"
 					},
 					{
 						"name": "港口不存在",
