@@ -2908,7 +2908,181 @@
 				]
 			}
 		]
-	}					   
+	},
+	{
+		"name": "Port Fees",
+		"item": [
+		  {
+			"name": "Get all port fees",
+			"request": {
+			  "method": "GET",
+			  "url": {
+				"raw": "{{base_url}}/api/port-fees",
+				"host": ["{{base_url}}"],
+				"path": ["api", "port-fees"]
+			  }
+			},
+			"response": [
+			  {
+				"name": "成功獲取所有港口費用",
+				"status": 200,
+				"description": "成功獲取所有港口費用",
+				"body": "[{\"id\":1,\"from_port_id\":1,\"to_port_id\":2,\"fee_id\":1,\"price\":3000,\"currency\":\"TWD\",\"description\":\"文件費用\",...}]"
+			  }
+			]
+		  },
+		  {
+			"name": "Get a port fee by ID",
+			"request": {
+			  "method": "GET",
+			  "url": {
+				"raw": "{{base_url}}/api/port-fees/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "port-fees", ":id"],
+				"variable": [
+				  {
+					"key": "id",
+					"value": "1"
+				  }
+				]
+			  }
+			},
+			"response": [
+			  {
+				"name": "成功獲取單一港口費用",
+				"status": 200,
+				"description": "成功獲取單一港口費用",
+				"body": "{\"id\":1,\"from_port_id\":1,\"to_port_id\":2,\"fee_id\":1,\"price\":3000,\"currency\":\"TWD\",\"description\":\"文件費用\",...}"
+			  },
+			  {
+				"name": "港口費用不存在",
+				"status": 404,
+				"description": "港口費用不存在",
+				"body": "{\"message\": \"Port fee not found\"}"
+			  }
+			]
+		  },
+		  {
+			"name": "Create new port fees",
+			"request": {
+			  "method": "POST",
+			  "header": [
+				{
+				  "key": "Content-Type",
+				  "value": "application/json"
+				}
+			  ],
+			  "body": {
+				"mode": "raw",
+				"raw": "{\"from_ports\":[1,2],\"to_ports\":[3,4],\"fees\":[{\"fee_id\":1,\"price\":2000,\"currency\":\"TWD\",\"description\":\"文件費用\"},{\"fee_id\":2,\"price\":3500,\"currency\":\"TWD\",\"description\":\"海運費用\"}]}"
+			  },
+			  "url": {
+				"raw": "{{base_url}}/api/port-fees",
+				"host": ["{{base_url}}"],
+				"path": ["api", "port-fees"]
+			  }
+			},
+			"response": [
+			  {
+				"name": "成功創建港口費用",
+				"status": 200,
+				"description": "成功創建港口費用",
+				"body": "{\"message\": \"Port fees batch processed successfully\"}"
+			  },
+			  {
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"from_ports.0\":[\"The selected from_ports.0 is invalid.\"],...}}"
+			  },
+			  {
+				"name": "來回港口重複錯誤",
+				"status": 422,
+				"description": "來回港口不能包含相同的港口 ID",
+				"body": "{\"message\": \"The same port cannot be used as both from_port and to_port.\",\"conflicting_ports\": [3]}"
+			  }
+			]
+		  },
+		  {
+			"name": "Update an existing port fee",
+			"request": {
+			  "method": "PUT",
+			  "header": [
+				{
+				  "key": "Content-Type",
+				  "value": "application/json"
+				}
+			  ],
+			  "body": {
+				"mode": "raw",
+				"raw": "{\"price\":3500,\"description\":\"更新後的文件費用\"}"
+			  },
+			  "url": {
+				"raw": "{{base_url}}/api/port-fees/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "port-fees", ":id"],
+				"variable": [
+				  {
+					"key": "id",
+					"value": "1"
+				  }
+				]
+			  }
+			},
+			"response": [
+			  {
+				"name": "成功更新港口費用",
+				"status": 200,
+				"description": "成功更新港口費用",
+				"body": "{\"id\":1,\"price\":3500,\"description\":\"更新後的文件費用\"}"
+			  },
+			  {
+				"name": "港口費用不存在",
+				"status": 404,
+				"description": "港口費用不存在",
+				"body": "{\"message\": \"Port fee not found\"}"
+			  },
+			  {
+				"name": "請求驗證失敗",
+				"status": 422,
+				"description": "請求驗證失敗",
+				"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"price\":[\"The price must be a valid number.\"]}}"
+			  }
+			]
+		  },
+		  {
+			"name": "Delete a port fee by ID",
+			"request": {
+			  "method": "DELETE",
+			  "url": {
+				"raw": "{{base_url}}/api/port-fees/:id",
+				"host": ["{{base_url}}"],
+				"path": ["api", "port-fees", ":id"],
+				"variable": [
+				  {
+					"key": "id",
+					"value": "1"
+				  }
+				]
+			  }
+			},
+			"response": [
+			  {
+				"name": "成功刪除港口費用",
+				"status": 200,
+				"description": "成功刪除港口費用",
+				"body": "{\"message\": \"Port fee deleted successfully\"}"
+			  },
+			  {
+				"name": "港口費用不存在",
+				"status": 404,
+				"description": "港口費用不存在",
+				"body": "{\"message\": \"Port fee not found\"}"
+			  }
+			]
+		  }
+		]
+	}							 
   ],
   "variable": [
     {
