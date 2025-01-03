@@ -2740,6 +2740,174 @@
 				]
 			}
 		]
+	},
+	{
+		"name": "Fees",
+		"item": [
+			{
+				"name": "Get all fees",
+				"request": {
+					"method": "GET",
+					"url": {
+						"raw": "{{base_url}}/api/fees",
+						"host": ["{{base_url}}"],
+						"path": ["api", "fees"]
+					}
+				},
+				"response": [
+					{
+						"name": "成功獲取所有費用",
+						"status": 200,
+						"description": "成功獲取所有費用",
+						"body": "[{\"id\":1,\"name\":\"文件費\",\"name_en\":\"Documentation Fee\",\"pricing_method\":\"BL\",\"min_standard\":2000.00,\"description\":\"文件處理費用\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}]"
+					}
+				]
+			},
+			{
+				"name": "Get a fee by ID",
+				"request": {
+					"method": "GET",
+					"url": {
+						"raw": "{{base_url}}/api/fees/:id",
+						"host": ["{{base_url}}"],
+						"path": ["api", "fees", ":id"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功獲取單一費用",
+						"status": 200,
+						"description": "成功獲取單一費用",
+						"body": "{\"id\":1,\"name\":\"文件費\",\"name_en\":\"Documentation Fee\",\"pricing_method\":\"BL\",\"min_standard\":2000.00,\"description\":\"文件處理費用\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+					},
+					{
+						"name": "費用不存在",
+						"status": 404,
+						"description": "費用不存在",
+						"body": "{\"message\": \"Fee not found\"}"
+					}
+				]
+			},
+			{
+				"name": "Create a new fee",
+				"request": {
+					"method": "POST",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": {
+						"mode": "raw",
+						"raw": "{\"name\":\"文件費\",\"name_en\":\"Documentation Fee\",\"pricing_method\":\"BL\",\"min_standard\":2000,\"description\":\"文件處理費用\"}"
+					},
+					"url": {
+						"raw": "{{base_url}}/api/fees",
+						"host": ["{{base_url}}"],
+						"path": ["api", "fees"]
+					}
+				},
+				"response": [
+					{
+						"name": "成功創建新費用",
+						"status": 201,
+						"description": "成功創建新費用",
+						"body": "{\"id\":1,\"name\":\"文件費\",\"name_en\":\"Documentation Fee\",\"pricing_method\":\"BL\",\"min_standard\":2000.00,\"description\":\"文件處理費用\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:00:00\"}"
+					},
+					{
+						"name": "請求驗證失敗",
+						"status": 422,
+						"description": "請求驗證失敗",
+						"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"],\"name_en\":[\"The name_en field is required.\"]}}"
+					}
+				]
+			},
+			{
+				"name": "Update an existing fee",
+				"request": {
+					"method": "PUT",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": {
+						"mode": "raw",
+						"raw": "{\"name\":\"海運費\",\"name_en\":\"Ocean Freight Fee\",\"pricing_method\":\"RT\",\"min_standard\":3000}"
+					},
+					"url": {
+						"raw": "{{base_url}}/api/fees/:id",
+						"host": ["{{base_url}}"],
+						"path": ["api", "fees", ":id"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功更新費用",
+						"status": 200,
+						"description": "成功更新費用",
+						"body": "{\"id\":1,\"name\":\"海運費\",\"name_en\":\"Ocean Freight Fee\",\"pricing_method\":\"RT\",\"min_standard\":3000.00,\"description\":\"文件處理費用\",\"created_at\":\"2024-12-27 12:00:00\",\"updated_at\":\"2024-12-27 12:30:00\"}"
+					},
+					{
+						"name": "費用不存在",
+						"status": 404,
+						"description": "費用不存在",
+						"body": "{\"message\": \"Fee not found\"}"
+					},
+					{
+						"name": "請求驗證失敗",
+						"status": 422,
+						"description": "請求驗證失敗",
+						"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"name\":[\"The name field is required.\"]}}"
+					}
+				]
+			},
+			{
+				"name": "Delete a fee by ID",
+				"request": {
+					"method": "DELETE",
+					"url": {
+						"raw": "{{base_url}}/api/fees/:id",
+						"host": ["{{base_url}}"],
+						"path": ["api", "fees", ":id"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功刪除費用",
+						"status": 200,
+						"description": "成功刪除費用",
+						"body": "{\"message\": \"Fee deleted successfully\"}"
+					},
+					{
+						"name": "費用不存在",
+						"status": 404,
+						"description": "費用不存在",
+						"body": "{\"message\": \"Fee not found\"}"
+					}
+				]
+			}
+		]
 	}					   
   ],
   "variable": [
