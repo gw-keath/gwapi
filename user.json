@@ -2963,6 +2963,47 @@
 			]
 		  },
 		  {
+			"name": "Search port fees",
+			"request": {
+				"method": "POST",
+				"url": {
+					"raw": "{{base_url}}/api/port-fees/search",
+					"host": ["{{base_url}}"],
+					"path": ["api", "port-fees", "search"]
+				},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"from_port_id\":1,\"to_port_id\":2,\"fee_id\":3}"
+				}
+			},
+			"response": [
+				{
+					"name": "成功篩選港口費用",
+					"status": 200,
+					"description": "成功返回符合條件的港口費用記錄",
+					"body": "[{\"id\":1,\"from_port_id\":1,\"to_port_id\":2,\"fee_id\":3,\"price\":3000,\"currency\":\"TWD\",\"description\":\"文件費用\",...}]"
+				},
+				{
+					"name": "無符合條件的港口費用",
+					"status": 200,
+					"description": "沒有符合條件的港口費用",
+					"body": "[]"
+				},
+				{
+					"name": "請求驗證失敗",
+					"status": 422,
+					"description": "請求資料驗證失敗",
+					"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"from_port_id\":[\"The selected from_port_id is invalid.\"],...}}"
+				}
+			]
+		  },		
+		  {
 			"name": "Create new port fees",
 			"request": {
 			  "method": "POST",
