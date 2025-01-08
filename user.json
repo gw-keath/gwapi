@@ -1228,173 +1228,173 @@
 		]
 	},	 
     {
-      "name": "Trucks",
-      "item": [
-        {
-          "name": "Get all trucks",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "{{base_url}}/api/trucks",
-              "host": ["{{base_url}}"],
-              "path": ["api", "trucks"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功獲取所有卡車",
-              "status": 200,
-              "description": "成功獲取所有卡車",
-              "body": "[{\"id\":1,\"type\":\"Box Truck\",\"capacity_kg\":5000,...}]"
-            }
-          ]
-        },
-        {
-          "name": "Get a truck by ID",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "{{base_url}}/api/trucks/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "trucks", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功獲取單一卡車",
-              "status": 200,
-              "description": "成功獲取單一卡車",
-              "body": "{\"id\":1,\"type\":\"Box Truck\",\"capacity_kg\":5000,...}"
-            },
-            {
-              "name": "卡車不存在",
-              "status": 404,
-              "description": "卡車不存在",
-              "body": "{\"message\": \"Truck not found\"}"
-            }
-          ]
-        },
-        {
-          "name": "Create a new truck",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"type\":\"Box Truck\",\"capacity_kg\":5000,\"volume_cbm\":15.5,\"length\":6.2,\"width\":2.5,\"height\":2.7,\"has_tailgate\":true,\"tailgate_capacity_kg\":1000,\"status\":\"available\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/trucks",
-              "host": ["{{base_url}}"],
-              "path": ["api", "trucks"]
-            }
-          },
-          "response": [
-            {
-              "name": "成功創建新卡車",
-              "status": 201,
-              "description": "成功創建新卡車",
-              "body": "{\"id\":1,\"type\":\"Box Truck\",\"capacity_kg\":5000,...}"
-            },
-            {
-              "name": "請求驗證失敗",
-              "status": 422,
-              "description": "請求驗證失敗",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"type\":[\"The type field is required.\"],...}}"
-            }
-          ]
-        },
-        {
-          "name": "Update an existing truck",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\"type\":\"Box Truck\",\"capacity_kg\":5000,\"volume_cbm\":15.5,\"length\":6.2,\"width\":2.5,\"height\":2.7,\"has_tailgate\":true,\"tailgate_capacity_kg\":1000,\"status\":\"available\"}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/trucks/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "trucks", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功更新卡車",
-              "status": 200,
-              "description": "成功更新卡車",
-              "body": "{\"id\":1,\"status\":\"under_maintenance\"}"
-            },
-            {
-              "name": "卡車不存在",
-              "status": 404,
-              "description": "卡車不存在",
-              "body": "{\"message\": \"Truck not found\"}"
-            },
-            {
-              "name": "請求驗證失敗",
-              "status": 422,
-              "description": "請求驗證失敗",
-              "body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"status\":[\"The selected status is invalid.\"]}}"
-            }
-          ]
-        },
-        {
-          "name": "Delete a truck by ID",
-          "request": {
-            "method": "DELETE",
-            "url": {
-              "raw": "{{base_url}}/api/trucks/:id",
-              "host": ["{{base_url}}"],
-              "path": ["api", "trucks", ":id"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": "1"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "name": "成功刪除卡車",
-              "status": 200,
-              "description": "成功刪除卡車",
-              "body": "{\"message\": \"Truck deleted successfully\"}"
-            },
-            {
-              "name": "卡車不存在",
-              "status": 404,
-              "description": "卡車不存在",
-              "body": "{\"message\": \"Truck not found\"}"
-            }
-          ]
-        }
-      ]
-    },
+		"name": "Trucks",
+		"item": [
+			{
+				"name": "Get all trucks",
+				"request": {
+					"method": "GET",
+					"url": {
+						"raw": "{{base_url}}/api/trucks",
+						"host": ["{{base_url}}"],
+						"path": ["api", "trucks"]
+					}
+				},
+				"response": [
+					{
+						"name": "成功獲取所有卡車",
+						"status": 200,
+						"description": "成功獲取所有卡車",
+						"body": "[{\"id\":1,\"type\":\"Box Truck\",\"capacity_kg\":5000,\"volume_cbm\":15.5,\"length\":6.2,\"width\":2.5,\"height\":2.7,\"has_tailgate\":true,\"tailgate_capacity_kg\":1000,\"status\":\"available\",\"description\":\"A versatile truck for general transport.\",\"internal_notes\":\"Reserved for special orders.\"}]"
+					}
+				]
+			},
+			{
+				"name": "Get a truck by ID",
+				"request": {
+					"method": "GET",
+					"url": {
+						"raw": "{{base_url}}/api/trucks/:id",
+						"host": ["{{base_url}}"],
+						"path": ["api", "trucks", ":id"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功獲取單一卡車",
+						"status": 200,
+						"description": "成功獲取單一卡車",
+						"body": "{\"id\":1,\"type\":\"Box Truck\",\"capacity_kg\":5000,\"volume_cbm\":15.5,\"length\":6.2,\"width\":2.5,\"height\":2.7,\"has_tailgate\":true,\"tailgate_capacity_kg\":1000,\"status\":\"available\",\"description\":\"A versatile truck for general transport.\",\"internal_notes\":\"Reserved for special orders.\"}"
+					},
+					{
+						"name": "卡車不存在",
+						"status": 404,
+						"description": "卡車不存在",
+						"body": "{\"message\": \"Truck not found\"}"
+					}
+				]
+			},
+			{
+				"name": "Create a new truck",
+				"request": {
+					"method": "POST",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": {
+						"mode": "raw",
+						"raw": "{\"type\":\"Box Truck\",\"capacity_kg\":5000,\"volume_cbm\":15.5,\"length\":6.2,\"width\":2.5,\"height\":2.7,\"has_tailgate\":true,\"tailgate_capacity_kg\":1000,\"status\":\"available\",\"description\":\"A versatile truck for general transport.\",\"internal_notes\":\"Reserved for special orders.\"}"
+					},
+					"url": {
+						"raw": "{{base_url}}/api/trucks",
+						"host": ["{{base_url}}"],
+						"path": ["api", "trucks"]
+					}
+				},
+				"response": [
+					{
+						"name": "成功創建新卡車",
+						"status": 201,
+						"description": "成功創建新卡車",
+						"body": "{\"id\":1,\"type\":\"Box Truck\",\"capacity_kg\":5000,\"volume_cbm\":15.5,\"length\":6.2,\"width\":2.5,\"height\":2.7,\"has_tailgate\":true,\"tailgate_capacity_kg\":1000,\"status\":\"available\",\"description\":\"A versatile truck for general transport.\",\"internal_notes\":\"Reserved for special orders.\"}"
+					},
+					{
+						"name": "請求驗證失敗",
+						"status": 422,
+						"description": "請求驗證失敗",
+						"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"type\":[\"The type field is required.\"],\"description\":[\"The description field is required.\"],\"internal_notes\":[\"The internal notes field is required.\"]}}"
+					}
+				]
+			},
+			{
+				"name": "Update an existing truck",
+				"request": {
+					"method": "PUT",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"body": {
+						"mode": "raw",
+						"raw": "{\"type\":\"Box Truck\",\"capacity_kg\":5000,\"volume_cbm\":15.5,\"length\":6.2,\"width\":2.5,\"height\":2.7,\"has_tailgate\":true,\"tailgate_capacity_kg\":1000,\"status\":\"available\",\"description\":\"Updated truck description.\",\"internal_notes\":\"Updated internal notes.\"}"
+					},
+					"url": {
+						"raw": "{{base_url}}/api/trucks/:id",
+						"host": ["{{base_url}}"],
+						"path": ["api", "trucks", ":id"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功更新卡車",
+						"status": 200,
+						"description": "成功更新卡車",
+						"body": "{\"id\":1,\"status\":\"under_maintenance\",\"description\":\"Updated truck description.\",\"internal_notes\":\"Updated internal notes.\"}"
+					},
+					{
+						"name": "卡車不存在",
+						"status": 404,
+						"description": "卡車不存在",
+						"body": "{\"message\": \"Truck not found\"}"
+					},
+					{
+						"name": "請求驗證失敗",
+						"status": 422,
+						"description": "請求驗證失敗",
+						"body": "{\"message\":\"The given data was invalid.\",\"errors\":{\"status\":[\"The selected status is invalid.\"]}}"
+					}
+				]
+			},
+			{
+				"name": "Delete a truck by ID",
+				"request": {
+					"method": "DELETE",
+					"url": {
+						"raw": "{{base_url}}/api/trucks/:id",
+						"host": ["{{base_url}}"],
+						"path": ["api", "trucks", ":id"],
+						"variable": [
+							{
+								"key": "id",
+								"value": "1"
+							}
+						]
+					}
+				},
+				"response": [
+					{
+						"name": "成功刪除卡車",
+						"status": 200,
+						"description": "成功刪除卡車",
+						"body": "{\"message\": \"Truck deleted successfully\"}"
+					},
+					{
+						"name": "卡車不存在",
+						"status": 404,
+						"description": "卡車不存在",
+						"body": "{\"message\": \"Truck not found\"}"
+					}
+				]
+			}
+		]
+	},	
     {
       "name": "Truck Prices",
       "item": [
@@ -1620,11 +1620,11 @@
           },
           "response": [
             {
-              "name": "成功計算價格",
-              "status": 200,
-              "description": "成功返回符合條件的卡車和費用資訊",
-              "body": "{\"status\": \"success\",\"origin_port\": \"基隆港\",\"destination\": {\"postal_code\": \"200\",\"city\": \"基隆市\",\"district\": \"信義區\",\"address\": \"某某路 某巷 123號 5樓 A室\",\"has_elevator\": true},\"items\": [{\"type\": \"防水袋\",\"quantity\": 56,\"weight_per_item\": 720,\"length\": 30,\"width\": 40,\"height\": 25,\"cbm\": 1.68}],\"max_dimensions\": {\"length\": 30,\"width\": 40,\"height\": 25},\"totals\": {\"weight\": 40320,\"cbm\": 1.68},\"suitable_trucks\": [{\"id\": 5,\"type\": \"2噸\",\"capacity_kg\": 50000,\"volume_cbm\": \"10.00\",\"length\": \"400.00\",\"width\": \"200.00\",\"height\": \"200.00\",\"has_tailgate\": 1,\"tailgate_capacity_kg\": 1000,\"status\": \"available\"}],\"best_truck\": \"2噸\",\"final_price\": 2200.00}"
-            },
+				"name": "成功計算價格",
+				"status": 200,
+				"description": "成功返回符合條件的卡車和費用資訊",
+				"body": "{\"status\": \"success\",\"origin_port\": \"基隆港\",\"destination\": {\"postal_code\": \"200\",\"city\": \"基隆市\",\"district\": \"信義區\",\"address\": \"某某路 某巷 123號 5樓 A室\",\"has_elevator\": true},\"items\": [{\"type\": \"防水袋\",\"quantity\": 56,\"weight_per_item\": 720,\"length\": 30,\"width\": 40,\"height\": 25,\"cbm\": 1.68}],\"max_dimensions\": {\"length\": 30,\"width\": 40,\"height\": 25},\"totals\": {\"weight\": 40320,\"cbm\": 1.68},\"suitable_trucks\": [{\"id\": 5,\"type\": \"2噸\",\"capacity_kg\": 50000,\"volume_cbm\": \"10.00\",\"length\": \"400.00\",\"width\": \"200.00\",\"height\": \"200.00\",\"has_tailgate\": 1,\"tailgate_capacity_kg\": 1000,\"status\": \"available\"}],\"best_truck\": {\"type\": \"2噸\",\"description\": \"這是一輛適合中型運輸的卡車，載重量高達2噸。\"},\"final_price\": 2200.00}"
+			},			
             {
               "name": "沒有符合的卡車",
               "status": 404,
@@ -2979,7 +2979,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"from_port_id\":1,\"to_port_id\":2,\"fee_id\":3}"
+					"raw": "{\"from_port_id\":2,\"to_port_id\":null,\"fee_id\":null}"
 				}
 			},
 			"response": [
